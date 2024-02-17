@@ -11,11 +11,7 @@ import {
 import { ChakraProvider } from "@chakra-ui/react";
 
 const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<App />}>
-      <Route path="/test" element={<>test</>}></Route>
-    </Route>
-  )
+  createRoutesFromElements(<Route path="/" element={<App />}></Route>)
 );
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
