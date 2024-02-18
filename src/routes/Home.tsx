@@ -1,12 +1,13 @@
-import { Center } from "@chakra-ui/react";
-import Navbar from "../components/Navbar";
-import { Navigation } from "../constant/navigation";
+import { Container } from "@chakra-ui/react";
+import Layout from "@/components/Layout";
 
 const Home = () => {
   return (
-    <Center>
-      <Navbar data={Navigation} />
-    </Center>
+    <Layout>
+      <Container maxW={'container.xl'}>
+        Content here
+      </Container>
+    </Layout>
   );
 };
 
