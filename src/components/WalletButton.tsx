@@ -21,6 +21,7 @@ const WalletButton = () => {
         lineHeight={"9.61px"}
         fontSize="2xs"
         letterSpacing="widest"
+        fontWeight={700}
       >
         {t("connectWallet")}
       </Text>
