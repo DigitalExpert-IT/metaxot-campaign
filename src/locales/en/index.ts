@@ -1,7 +1,7 @@
 import navigation from "./navigation.json";
 
 const en = {
-  navigation,
+  ...navigation,
 };
 
 export default en;
