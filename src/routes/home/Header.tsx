@@ -25,10 +25,14 @@ const Header: React.FC = () => {
               h={"100%"}
               justifyContent={"space-between"}
             >
-              <Text fontSize={30} fontWeight={400}>
+              <Text fontSize={"3xl"} fontWeight={"normal"}>
                 {t("highlightMessage")}
               </Text>
-              <Text fontSize={20} fontWeight={400} color={"#939393"}>
+              <Text
+                fontSize={"xl"}
+                fontWeight={"normal"}
+                color={"whiteAlpha.700"}
+              >
                 {t("createdBy")}
               </Text>
             </Box>
@@ -43,18 +47,26 @@ const Header: React.FC = () => {
             gap={6}
           >
             <Box>
-              <Text fontSize={30} fontWeight={400}>
+              <Text fontSize={"3xl"} fontWeight={"normal"}>
                 {t("goals.value")}
               </Text>
-              <Text fontSize={20} fontWeight={400} color={"#939393"}>
+              <Text
+                fontSize={"xl"}
+                fontWeight={"normal"}
+                color={"whiteAlpha.700"}
+              >
                 {t("goals.expectedValue")}
               </Text>
             </Box>
             <Box>
-              <Text fontSize={30} fontWeight={400}>
+              <Text fontSize={"3xl"} fontWeight={"normal"}>
                 {t("backers.count")}
               </Text>
-              <Text fontSize={20} fontWeight={400} color={"#939393"}>
+              <Text
+                fontSize={"xl"}
+                fontWeight={"normal"}
+                color={"whiteAlpha.700"}
+              >
                 {t("backers.backer")}
               </Text>
             </Box>
