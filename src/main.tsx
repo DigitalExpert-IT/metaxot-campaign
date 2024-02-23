@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import theme from "./theme/index.ts";
-import Home from "./routes/Home.tsx";
+import Home from "./routes/home/Home.tsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(<Route path="/" element={<Home />}></Route>)

@@ -14,6 +14,8 @@ const WalletButton = () => {
       borderBottomRightRadius={20}
       px={5}
       py={3}
+      my={5}
+      minW={100}
     >
       <Text
         color={"black"}
