@@ -21,8 +21,8 @@ const WalletButton = () => {
         color={"black"}
         fontFamily={"unlock"}
         lineHeight={"3"}
-        fontSize="xs"
-        letterSpacing="widest"
+        fontSize={"xs"}
+        letterSpacing={"widest"}
         fontWeight={"bold"}
       >
         {t("connectWallet")}

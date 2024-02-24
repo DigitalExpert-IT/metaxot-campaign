@@ -23,7 +23,7 @@ const MenuDrawer: React.FC<IDrawer> = ({ children }) => {
       <Button display={{ base: "flex", md: "none" }} onClick={onOpen}>
         <HamburgerIcon fontSize={"4xl"} color={"white"} />
       </Button>
-      <Drawer isOpen={isOpen} placement="right" size={"md"} onClose={onClose}>
+      <Drawer isOpen={isOpen} placement={"right"} size={"md"} onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent>
           <DrawerHeader>

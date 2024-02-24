@@ -40,17 +40,17 @@ const Navbar: React.FC<INavbar> = ({ data }) => {
   return (
     <Center>
       <Stack
-        as="nav"
+        as={"nav"}
         w={"full"}
         position={"absolute"}
         mt={12}
         top={"0"}
-        justifyContent="center"
+        justifyContent={"center"}
       >
-        <Container maxW="container.xl">
-          <Box display="flex" alignItems="center">
+        <Container maxW={"container.xl"}>
+          <Box display={"flex"} alignItems={"center"}>
             <Box
-              display="flex"
+              display={"flex"}
               justifyContent={{ base: "start", md: "end" }}
               flex={1}
             >
@@ -63,10 +63,10 @@ const Navbar: React.FC<INavbar> = ({ data }) => {
             </Box>
             <Stack
               flex={1}
-              justify="end"
-              align="center"
-              direction="row"
-              spacing="4rem"
+              justify={"end"}
+              align={"center"}
+              direction={"row"}
+              spacing={"4rem"}
               display={{ base: "none", md: "flex" }}
             >
               <MenuList data={data} />
