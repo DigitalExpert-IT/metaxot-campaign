@@ -1,4 +1,4 @@
-import { Box, Center, Image, Text } from "@chakra-ui/react";
+import { Box, Image, Text } from "@chakra-ui/react";
 import heroImageUrl from "@/assets/images/hero-image.png";
 import { useTranslation } from "react-i18next";
 
@@ -6,7 +6,6 @@ const Header: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <Center w={"100%"}>
       <Box display={"flex"} flexDirection={"column"} gap={24}>
         <Image src={heroImageUrl} alt={"Hero Image"} />
         <Box display={"flex"} flexDirection={{ base: "column", md: "row" }}>
@@ -73,7 +72,6 @@ const Header: React.FC = () => {
           </Box>
         </Box>
       </Box>
-    </Center>
   );
 };
 
