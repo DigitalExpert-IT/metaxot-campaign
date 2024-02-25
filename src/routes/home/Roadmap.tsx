@@ -282,11 +282,19 @@ const Roadmap: React.FC = () => {
           alignItems={"center"}
           gap={6}
         >
-          <Img src={leftTitleShapeUrl} maxH={"6px"} />
+          <Img
+            src={leftTitleShapeUrl}
+            maxH={"6px"}
+            alt={"A shape at the left side of title"}
+          />
           <Text fontSize={"2xl"} fontWeight={"bold"} textAlign={"center"}>
             {t("newIslandPreparation")}
           </Text>
-          <Img src={rightTitleShapeUrl} maxH={"6px"} />
+          <Img
+            src={rightTitleShapeUrl}
+            maxH={"6px"}
+            alt={"A shape at the right side of title"}
+          />
         </Box>
       </Box>
     </Box>
