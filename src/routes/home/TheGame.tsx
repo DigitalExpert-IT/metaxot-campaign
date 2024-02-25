@@ -19,7 +19,7 @@ const TheGame: React.FC = () => {
         </Text>
         <Img
           src={rightTitleShapeUrl}
-          alt={"A shape in the right side of title"}
+          alt={"A shape at the right side of title"}
           maxH={"6px"}
         />
       </Box>
