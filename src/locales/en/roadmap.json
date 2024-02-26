@@ -1,0 +1,45 @@
+{
+  "stretchGoals": "Stretch Goals",
+  "goalOne": {
+    "value": "$50k",
+    "description": "Our Journey Begins"
+  },
+  "goalTwo": {
+    "value": "$100k",
+    "description": "Arcade"
+  },
+  "goalThree": {
+    "value": "$150k",
+    "description": "Zoo and Park"
+  },
+  "goalFour": {
+    "value": "$200k",
+    "description": "Web 3"
+  },
+  "goalFive": {
+    "value": "$300k",
+    "description": "NFT Marketplace"
+  },
+  "goalSix": {
+    "value": "$500k",
+    "description": "Multiplayer"
+  },
+  "goalSeven": {
+    "value": "$600k",
+    "description": "VR and Handheld"
+  },
+  "goalEight": {
+    "value": "$700k",
+    "description": "Experience Plus"
+  },
+  "goalNine": {
+    "value": "$800k",
+    "description": "Expand Robopet"
+  },
+  "goalTen": {
+    "value": "$1000k",
+    "description": "Island Polishing"
+  },
+  "releaseVersion": "1.0 Release",
+  "newIslandPreparation": "$1.000k+ New Island Preparation"
+}
