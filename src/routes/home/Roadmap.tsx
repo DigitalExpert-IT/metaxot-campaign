@@ -1,4 +1,4 @@
-import { Box, Circle, Img, Text } from "@chakra-ui/react";
+import { Box, BoxProps, Circle, Img, Text } from "@chakra-ui/react";
 import Hexagonal from "@/components/Hexagonal";
 import { useTranslation } from "react-i18next";
 import leftTitleShapeUrl from "@/assets/images/title-shape-left.png";
@@ -7,16 +7,16 @@ import rightTitleShapeUrl from "@/assets/images/title-shape-right.png";
 const Roadmap: React.FC = () => {
   const { t } = useTranslation();
 
-  const getHexagonalStyle = (filled: boolean = true) => ({
+  const getHexagonalStyle = (filled: boolean = true): BoxProps => ({
     backgroundImage: `${
       filled
         ? "linear-gradient(to right, #3391FF 5%, #FFBFFC 50%, #3391FF)"
         : "linear-gradient(to right, #000, #000)"
     }`,
-    WebkitBackgroundClip: "text",
-    MozBackgroundClip: "text",
-    WebkitTextFillColor: "transparent",
-    MozTextFillColor: "transparent",
+    bgClip: "text",
+    textColor:"transparent",
+    // WebkitTextFillColor: "transparent",
+    // MozTextFillColor: "transparent",
     filter: `
         drop-shadow(2px 0px 0px white)
         drop-shadow(-2px 0px 0px white)
@@ -27,7 +27,7 @@ const Roadmap: React.FC = () => {
       `,
   });
 
-  const getHexagonalContentStyle = (top: number = 0, left: number = 0) =>
+  const getHexagonalContentStyle = (top: number = 0, left: number = 0): BoxProps =>
     ({
       top: `calc(${top}px - 110px)`,
       left: `calc(${left}px + 30px)`,
@@ -35,7 +35,7 @@ const Roadmap: React.FC = () => {
       zIndex: "1",
       fontSize: "24px",
       margin: "0 auto",
-    } as React.CSSProperties);
+    });
 
   return (
     <Box display={"flex"} flexDirection={"column"} gap={4}>
@@ -85,12 +85,12 @@ const Roadmap: React.FC = () => {
         >
           <Box>
             <Hexagonal
-              margin={{ marginBottom: "-20px" }}
-              customStyle={getHexagonalStyle()}
+              marginBottom={"-20px"}
+              {...getHexagonalStyle()}
             />
-            <span style={getHexagonalContentStyle(220)}>
+            <Box as="span" {...getHexagonalContentStyle(220)}>
               {t("goalOne.value")}
-            </span>
+            </Box>
             <Text
               style={{ position: "absolute", top: 110, left: 220 }}
               fontSize={"2xl"}
@@ -101,14 +101,14 @@ const Roadmap: React.FC = () => {
           </Box>
           <Box>
             <Hexagonal
-              margin={{ marginBottom: "-20px" }}
-              customStyle={getHexagonalStyle()}
+              marginBottom={"-20px"}
+              {...getHexagonalStyle()}
               top={-100}
               left={60}
             />
-            <span style={getHexagonalContentStyle(340, 60)}>
+            <Box as="span" {...getHexagonalContentStyle(340, 60)}>
               {t("goalTwo.value")}
-            </span>
+            </Box>
             <Text
               style={{ position: "absolute", top: 230, left: 220 }}
               fontSize={"2xl"}
@@ -119,13 +119,13 @@ const Roadmap: React.FC = () => {
           </Box>
           <Box>
             <Hexagonal
-              margin={{ marginBottom: "-20px" }}
-              customStyle={getHexagonalStyle()}
+              marginBottom={"-20px"}
+              {...getHexagonalStyle()}
               top={-200}
             />
-            <span style={getHexagonalContentStyle(460)}>
+            <Box as="span" {...getHexagonalContentStyle(460)}>
               {t("goalThree.value")}
-            </span>
+            </Box>
             <Text
               style={{ position: "absolute", top: 350, left: 220 }}
               fontSize={"2xl"}
@@ -136,14 +136,14 @@ const Roadmap: React.FC = () => {
           </Box>
           <Box>
             <Hexagonal
-              margin={{ marginBottom: "-20px" }}
-              customStyle={getHexagonalStyle()}
+              marginBottom={"-20px"}
+              {...getHexagonalStyle()}
               top={-300}
               left={60}
             />
-            <span style={getHexagonalContentStyle(580, 60)}>
+            <Box as="span" {...getHexagonalContentStyle(580, 60)}>
               {t("goalFour.value")}
-            </span>
+            </Box>
             <Text
               style={{ position: "absolute", top: 470, left: 220 }}
               fontSize={"2xl"}
@@ -154,13 +154,13 @@ const Roadmap: React.FC = () => {
           </Box>
           <Box>
             <Hexagonal
-              margin={{ marginBottom: "-20px" }}
-              customStyle={getHexagonalStyle()}
+              marginBottom={"-20px"}
+              {...getHexagonalStyle()}
               top={-400}
             />
-            <span style={getHexagonalContentStyle(700)}>
+            <Box as="span" {...getHexagonalContentStyle(700)}>
               {t("goalFive.value")}
-            </span>
+            </Box>
             <Text
               style={{ position: "absolute", top: 590, left: 220 }}
               fontSize={"2xl"}
@@ -188,12 +188,12 @@ const Roadmap: React.FC = () => {
         >
           <Box>
             <Hexagonal
-              margin={{ marginBottom: "-20px" }}
-              customStyle={getHexagonalStyle()}
+              marginBottom={"-20px"}
+              {...getHexagonalStyle()}
             />
-            <span style={getHexagonalContentStyle(220)}>
+            <Box as="span" {...getHexagonalContentStyle(220)}>
               {t("goalSix.value")}
-            </span>
+            </Box>
             <Text
               style={{ position: "absolute", top: 110, left: 220 }}
               fontSize={"2xl"}
@@ -204,14 +204,14 @@ const Roadmap: React.FC = () => {
           </Box>
           <Box>
             <Hexagonal
-              margin={{ marginBottom: "-20px" }}
-              customStyle={getHexagonalStyle(false)}
+              marginBottom={"-20px"}
+              {...getHexagonalStyle(false)}
               top={-100}
               left={60}
             />
-            <span style={getHexagonalContentStyle(340, 60)}>
+            <Box as="span" {...getHexagonalContentStyle(340, 60)}>
               {t("goalSeven.value")}
-            </span>
+            </Box>
             <Text
               style={{ position: "absolute", top: 230, left: 220 }}
               fontSize={"2xl"}
@@ -222,13 +222,13 @@ const Roadmap: React.FC = () => {
           </Box>
           <Box>
             <Hexagonal
-              margin={{ marginBottom: "-20px" }}
-              customStyle={getHexagonalStyle(false)}
+              marginBottom={"-20px"}
+              {...getHexagonalStyle(false)}
               top={-200}
             />
-            <span style={getHexagonalContentStyle(460)}>
+            <Box as="span" {...getHexagonalContentStyle(460)}>
               {t("goalEight.value")}
-            </span>
+            </Box>
             <Text
               style={{ position: "absolute", top: 350, left: 220 }}
               fontSize={"2xl"}
@@ -239,14 +239,14 @@ const Roadmap: React.FC = () => {
           </Box>
           <Box>
             <Hexagonal
-              margin={{ marginBottom: "-20px" }}
-              customStyle={getHexagonalStyle(false)}
+              marginBottom={"-20px"}
+              {...getHexagonalStyle(false)}
               top={-300}
               left={60}
             />
-            <span style={getHexagonalContentStyle(580, 60)}>
+            <Box as="span" {...getHexagonalContentStyle(580, 60)}>
               {t("goalNine.value")}
-            </span>
+            </Box>
             <Text
               style={{ position: "absolute", top: 470, left: 220 }}
               fontSize={"2xl"}
@@ -257,13 +257,13 @@ const Roadmap: React.FC = () => {
           </Box>
           <Box>
             <Hexagonal
-              margin={{ marginBottom: "-20px" }}
-              customStyle={getHexagonalStyle(false)}
+              marginBottom={"-20px"}
+              {...getHexagonalStyle(false)}
               top={-400}
             />
-            <span style={getHexagonalContentStyle(700)}>
+            <Box as="span" {...getHexagonalContentStyle(700)}>
               {t("goalTen.value")}
-            </span>
+            </Box>
             <Text
               style={{ position: "absolute", top: 590, left: 220 }}
               fontSize={"2xl"}
