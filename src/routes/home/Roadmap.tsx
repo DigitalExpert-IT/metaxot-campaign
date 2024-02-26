@@ -14,9 +14,7 @@ const Roadmap: React.FC = () => {
         : "linear-gradient(to right, #000, #000)"
     }`,
     bgClip: "text",
-    textColor:"transparent",
-    // WebkitTextFillColor: "transparent",
-    // MozTextFillColor: "transparent",
+    textColor: "transparent",
     filter: `
         drop-shadow(2px 0px 0px white)
         drop-shadow(-2px 0px 0px white)
@@ -27,15 +25,17 @@ const Roadmap: React.FC = () => {
       `,
   });
 
-  const getHexagonalContentStyle = (top: number = 0, left: number = 0): BoxProps =>
-    ({
-      top: `calc(${top}px - 110px)`,
-      left: `calc(${left}px + 30px)`,
-      position: "absolute",
-      zIndex: "1",
-      fontSize: "24px",
-      margin: "0 auto",
-    });
+  const getHexagonalContentStyle = (
+    top: number = 0,
+    left: number = 0
+  ): BoxProps => ({
+    top: `calc(${top}px - 110px)`,
+    left: `calc(${left}px + 30px)`,
+    position: "absolute",
+    zIndex: "1",
+    fontSize: "24px",
+    margin: "0 auto",
+  });
 
   return (
     <Box display={"flex"} flexDirection={"column"} gap={4}>
@@ -84,15 +84,14 @@ const Roadmap: React.FC = () => {
           h={"max-content"}
         >
           <Box>
-            <Hexagonal
-              marginBottom={"-20px"}
-              {...getHexagonalStyle()}
-            />
+            <Hexagonal marginBottom={"-20px"} {...getHexagonalStyle()} />
             <Box as="span" {...getHexagonalContentStyle(220)}>
               {t("goalOne.value")}
             </Box>
             <Text
-              style={{ position: "absolute", top: 110, left: 220 }}
+              position={"absolute"}
+              top={110}
+              left={"220px"}
               fontSize={"2xl"}
               minW={{ lg: "300px" }}
             >
@@ -104,13 +103,15 @@ const Roadmap: React.FC = () => {
               marginBottom={"-20px"}
               {...getHexagonalStyle()}
               top={-100}
-              left={60}
+              left={"60px"}
             />
             <Box as="span" {...getHexagonalContentStyle(340, 60)}>
               {t("goalTwo.value")}
             </Box>
             <Text
-              style={{ position: "absolute", top: 230, left: 220 }}
+              position={"absolute"}
+              top={230}
+              left={"220px"}
               fontSize={"2xl"}
               minW={{ lg: "300px" }}
             >
@@ -127,7 +128,9 @@ const Roadmap: React.FC = () => {
               {t("goalThree.value")}
             </Box>
             <Text
-              style={{ position: "absolute", top: 350, left: 220 }}
+              position={"absolute"}
+              top={350}
+              left={"220px"}
               fontSize={"2xl"}
               minW={{ lg: "300px" }}
             >
@@ -139,13 +142,15 @@ const Roadmap: React.FC = () => {
               marginBottom={"-20px"}
               {...getHexagonalStyle()}
               top={-300}
-              left={60}
+              left={"60px"}
             />
             <Box as="span" {...getHexagonalContentStyle(580, 60)}>
               {t("goalFour.value")}
             </Box>
             <Text
-              style={{ position: "absolute", top: 470, left: 220 }}
+              position={"absolute"}
+              top={470}
+              left={"220px"}
               fontSize={"2xl"}
               minW={{ lg: "300px" }}
             >
@@ -162,7 +167,9 @@ const Roadmap: React.FC = () => {
               {t("goalFive.value")}
             </Box>
             <Text
-              style={{ position: "absolute", top: 590, left: 220 }}
+              position={"absolute"}
+              top={590}
+              left={"220px"}
               fontSize={"2xl"}
               minW={{ lg: "300px" }}
             >
@@ -187,15 +194,14 @@ const Roadmap: React.FC = () => {
           top={{ base: "55%", lg: 0 }}
         >
           <Box>
-            <Hexagonal
-              marginBottom={"-20px"}
-              {...getHexagonalStyle()}
-            />
+            <Hexagonal marginBottom={"-20px"} {...getHexagonalStyle()} />
             <Box as="span" {...getHexagonalContentStyle(220)}>
               {t("goalSix.value")}
             </Box>
             <Text
-              style={{ position: "absolute", top: 110, left: 220 }}
+              position={"absolute"}
+              top={110}
+              left={"220px"}
               fontSize={"2xl"}
               minW={{ lg: "300px" }}
             >
@@ -207,13 +213,15 @@ const Roadmap: React.FC = () => {
               marginBottom={"-20px"}
               {...getHexagonalStyle(false)}
               top={-100}
-              left={60}
+              left={"60px"}
             />
             <Box as="span" {...getHexagonalContentStyle(340, 60)}>
               {t("goalSeven.value")}
             </Box>
             <Text
-              style={{ position: "absolute", top: 230, left: 220 }}
+              position={"absolute"}
+              top={230}
+              left={"220px"}
               fontSize={"2xl"}
               minW={{ lg: "300px" }}
             >
@@ -230,7 +238,9 @@ const Roadmap: React.FC = () => {
               {t("goalEight.value")}
             </Box>
             <Text
-              style={{ position: "absolute", top: 350, left: 220 }}
+              position={"absolute"}
+              top={350}
+              left={"220px"}
               fontSize={"2xl"}
               minW={{ lg: "300px" }}
             >
@@ -242,13 +252,15 @@ const Roadmap: React.FC = () => {
               marginBottom={"-20px"}
               {...getHexagonalStyle(false)}
               top={-300}
-              left={60}
+              left={"60px"}
             />
             <Box as="span" {...getHexagonalContentStyle(580, 60)}>
               {t("goalNine.value")}
             </Box>
             <Text
-              style={{ position: "absolute", top: 470, left: 220 }}
+              position={"absolute"}
+              top={470}
+              left={"220px"}
               fontSize={"2xl"}
               minW={{ lg: "300px" }}
             >
@@ -265,7 +277,9 @@ const Roadmap: React.FC = () => {
               {t("goalTen.value")}
             </Box>
             <Text
-              style={{ position: "absolute", top: 590, left: 220 }}
+              position={"absolute"}
+              top={590}
+              left={"220px"}
               fontSize={"2xl"}
               minW={{ lg: "300px" }}
             >
