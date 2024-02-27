@@ -1,53 +1,22 @@
-interface IHexagonal {
-  padding?: {
-    paddingTop?: string;
-    paddingBottom?: string;
-    paddingLeft?: string;
-    paddingRight?: string;
-  };
-  margin?: {
-    marginTop?: string;
-    marginBottom?: string;
-    marginLeft?: string;
-    marginRight?: string;
-  };
-  top?: number;
-  left?: number;
-  right?: number;
-  bottom?: number;
-  size?: string;
-  color?: string;
-  customStyle?: object;
-}
+import { Box, BoxProps } from "@chakra-ui/react";
 
-const Hexagonal: React.FC<IHexagonal> = ({
-  padding = {},
-  margin = {},
-  top = 0,
-  left = 0,
-  right = 0,
-  bottom = 0,
-  size = "160px",
-  color = "transparent",
-  customStyle = {},
-}) => {
+interface IHexagonal extends BoxProps {}
+
+const Hexagonal: React.FC<IHexagonal> = (props) => {
+  const { ...rest } = props;
   return (
-    <div
-      style={{
-        ...padding,
-        ...margin,
-        top: top,
-        bottom: bottom,
-        left: left,
-        right: right,
-        fontSize: size,
-        color: color,
-        position: "relative",
-        ...customStyle,
-      }}
+    <Box
+      top={0}
+      bottom={0}
+      left={0}
+      right={0}
+      fontSize={"160px"}
+      color={"transparent"}
+      position={"relative"}
+      {...rest}
     >
       &#x2B22;
-    </div>
+    </Box>
   );
 };
 
