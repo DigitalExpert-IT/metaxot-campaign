@@ -1,4 +1,4 @@
-import { Box, Img } from "@chakra-ui/react";
+import { Box, Img, Text } from "@chakra-ui/react";
 import theGameUrl from "@/assets/images/the-game.png";
 import { useTranslation } from "react-i18next";
 import SectionTitle from "@/components/SectionTitle";
@@ -14,13 +14,9 @@ const TheGame: React.FC = () => {
         flexDirection={{ base: "column", md: "row" }}
         gap={4}
       >
-        <Box fontSize={"xl"}>
-          <p style={{ fontFamily: `Urbanist` }}>
-            {t("theGame.content.paragraphOne")}
-          </p>
-          <p style={{ fontFamily: `Urbanist` }}>
-            {t("theGame.content.paragraphTwo")}
-          </p>
+        <Box fontSize={"xl"} >
+          <Text mt={14}>{t("theGame.content.paragraphOne")}</Text>
+          <Text>{t("theGame.content.paragraphTwo")}</Text>
         </Box>
         {/* TO-DO: Change image to video component when the content is ready. */}
         <Img src={theGameUrl} alt={"The game thumbnail"} />
