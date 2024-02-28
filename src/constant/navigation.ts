@@ -23,3 +23,22 @@ export const Navigation: Array<INavigation> = [
     link: "#",
   },
 ];
+
+export const FooterNav: Array<INavigation> = [
+  {
+    name: "FAQ",
+    link: "#",
+  },
+  {
+    name: "Community",
+    link: "#",
+  },
+  {
+    name: "Backer",
+    link: "#",
+  },
+  {
+    name: "Download",
+    link: "#",
+  },
+]
