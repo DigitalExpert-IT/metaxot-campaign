@@ -1,11 +1,11 @@
 import { Global } from "@emotion/react";
-import "@fontsource-variable/urbanist";
-import "@fontsource/unlock";
+import "@fontsource/urbanist";
+import "@fontsource/Unlock";
 
 const Fonts = () => (
   <Global
     styles={`
-      font-family: "Urbanist Variable", sans-serif;
+      font-family: "Urbanist", sans-serif;
       font-optical-sizing: auto;
       font-weight: 400;
       font-style: normal;

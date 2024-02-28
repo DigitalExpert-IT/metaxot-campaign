@@ -42,7 +42,7 @@ const Roadmap: React.FC = () => {
       <Box display={"flex"} justifyContent={"center"}>
         <Text
           color={"white"}
-          fontFamily={"unlock"}
+          fontFamily={"Unlock"}
           lineHeight={"3"}
           fontSize={"3xl"}
           fontWeight={700}

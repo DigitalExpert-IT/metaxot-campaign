@@ -19,7 +19,7 @@ const WalletButton = () => {
     >
       <Text
         color={"black"}
-        fontFamily={"unlock"}
+        fontFamily={"Unlock"}
         lineHeight={"3"}
         fontSize={"xs"}
         letterSpacing={"widest"}

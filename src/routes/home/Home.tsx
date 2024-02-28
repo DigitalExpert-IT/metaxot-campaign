@@ -3,6 +3,7 @@ import Layout from "@/components/Layout";
 import Header from "./Header";
 import Roadmap from "./Roadmap";
 import TheGame from "./TheGame";
+import RiskAndCurrent from "./RiskAndCurrent";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
           <Header />
           <Roadmap />
           <TheGame />
+          <RiskAndCurrent/>
         </Box>
       </Container>
     </Layout>
