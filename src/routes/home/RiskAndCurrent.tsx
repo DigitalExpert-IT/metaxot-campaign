@@ -8,14 +8,14 @@ const RiskAndCurrent = () => {
   return (
     <Box>
       <SectionTitle title={t("currentStatus.title")} />
-      <Text fontSize={"xl"} mt={20} fontFamily={'Urbanist'}>
+      <Text fontSize={"xl"} mt={20} >
         {t("currentStatus.description")}
       </Text>
       <Flex justify={"center"} my={10}>
         <Img src={imgSupportUs} />
       </Flex>
       <SectionTitle title={t("riskAndChallange.title")} my={20} />
-      <Text fontSize={"xl"} mt={20} fontFamily={'Urbanist'}>{t("riskAndChallange.description")}</Text>
+      <Text fontSize={"xl"} mt={20} >{t("riskAndChallange.description")}</Text>
     </Box>
   );
 };
