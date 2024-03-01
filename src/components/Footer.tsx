@@ -16,11 +16,11 @@ const Footer = () => {
 
   return (
     <Container maxW={"container.xl"} py={20}>
-      <Flex justifyContent={"space-between"}>
+      <Flex justifyContent={"space-between"} direction={{base:'column', md:'row'}} align={'center'}>
         <VStack
           h={"inherit"}
           justifyContent={"space-between"}
-          alignItems={"flex-end"}
+          alignItems={{base:"center", md:"flex-end"}}
         >
           <Flex gap={8} align={"center"}>
             <Image
@@ -34,7 +34,7 @@ const Footer = () => {
           <Text fontSize={"12px"} color={"#FFBFFC"}>{t('footer.copyright')}</Text>
         </VStack>
 
-        <VStack gap={5} alignItems={"flex-end"}>
+        <VStack gap={5} alignItems={{base:"center" ,md:"flex-end"}} mt={{base:20, md:0}}>
           {FooterNav.map((link) => (
             <Link display={"block"} href={link.link} color={"#FFBFFC"}>
               <Text fontSize={"24px"} color={"#FFBFFC"}>
