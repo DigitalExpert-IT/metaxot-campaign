@@ -3,6 +3,7 @@ import Layout from "@/components/Layout";
 import Header from "./Header";
 import Roadmap from "./Roadmap";
 import TheGame from "./TheGame";
+import MetaxotCore from "./MetaxotCore";
 import RiskAndCurrent from "./RiskAndCurrent";
 
 const Home = () => {
@@ -13,7 +14,8 @@ const Home = () => {
           <Header />
           <Roadmap />
           <TheGame />
-          <RiskAndCurrent/>
+          <MetaxotCore />
+          <RiskAndCurrent />
         </Box>
       </Container>
     </Layout>
