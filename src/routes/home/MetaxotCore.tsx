@@ -44,7 +44,7 @@ const MetaxotCore: React.FC = () => {
       </Box>
       <Box
         display={"flex"}
-        flexDirection={{ base: "column", md: "row" }}
+        flexDirection={"row"}
         gap={4}
         alignItems={"center"}
         justifyContent={"center"}
