@@ -4,6 +4,7 @@ import Header from "./Header";
 import Roadmap from "./Roadmap";
 import TheGame from "./TheGame";
 import MetaxotCore from "./MetaxotCore";
+import RiskAndCurrent from "./RiskAndCurrent";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
           <Roadmap />
           <TheGame />
           <MetaxotCore />
+          <RiskAndCurrent />
         </Box>
       </Container>
     </Layout>
