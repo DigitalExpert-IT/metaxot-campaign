@@ -6,6 +6,7 @@ import metaxotCore from "./metaxotCore.json";
 import footer from "./footer.json";
 import riskAndCurrent from "./riskAndCurrent.json";
 import features from "./features.json";
+import bakeOurProject from "./bakeOurProject.json";
 
 const en = {
   ...navigation,
@@ -16,6 +17,7 @@ const en = {
   ...footer,
   ...riskAndCurrent,
   ...features,
+  ...bakeOurProject,
 };
 
 export default en;
