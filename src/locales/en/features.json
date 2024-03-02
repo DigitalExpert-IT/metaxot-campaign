@@ -1,0 +1,95 @@
+{
+  "metaxotWorld": {
+    "title": "Metaxot World",
+    "contents": {
+      "main": "Selamat datang di pulau Alpha pulau pertama dari semesta metaxot yang akan menjadi awal perjalanan menakjubkan, di pulau dengan luas 681 km2 mengusung gaya futuristic klasik masa depan yang digabungkan dengan bentangan alam yang terinspirasi dari seluruh dunia, menghadirkan pengalaman tinggal di dunia nyata dengan peningkatan visual imajinatif. Pulau ini memiliki 4 musim dalam setahun, dan terdiri dari beberapa bagian yaitu :",
+      "sub.1": "<b>Pegunungan</b>\nDi setiap pulau terdapat pegunungan yang bisa di eksploitasi player untuk mendapatkan batu langka yang tersedia, kumpulkan sebanyak mungkin batu langka untuk meningkatkan level peralatan yang kamu punya.\n<b>Hutan</b>\nSumber daya yang melimpah memungkinkan pemain untuk dapat hidup berkelanjutan di dunia metaxot, hutan memiliki sumber daya yang dapat digunakan oleh setiap pemain untuk membangun rumah ataupun bangunan.\n<b>Pantai</b>\nPinggir laut merupakan salah satu spot terbaik untuk menikmati keindahan alam dengan visual kreatif yang menakjubkan.\n<b>Danau</b>\nBerada di pusat kota dan taman, danau pilihan tepat sebagai tempat bersosialisasi antar player dan juga spot yang cocok untuk memancing.",
+      "sub.2": "<b>Taman</b>\nPeningkatan fungsi taman di dunia metaxot tidak hanya sebagai tempat bermain secara konvensional, setiap pemain dapat meningkatkan fungsi permainan sesuai keinginan pengguna (based on user) seperti realistic chess, 3D card game, immersive board game dan lain-lain.\n<b>Lot</b>\nLot adalah bagian dari pulau yang bernilai ekonomis serta dapat dimiliki oleh setiap pemain, setiap lot yang dimiliki dapat diberikan nilai tambah untuk meningkatkan valuasi lot tersebut seperti membangun rumah, membuka perkebunan, mendirikan bangunan, membuka toko ataupun dapat disewakan untuk mendapatkan keuntungan finansial.\n<b>Player Hub</b>\nPusat aktivitas para pemain di suatu pulau adalah player hub, ditempat ini setiap informasi yang dibutuhkan pemain tersedia."
+    }
+  },
+  "agriculture": {
+    "title": "Pertanian",
+    "contents": {
+      "main": "Buah dan sayur adalah item yang memiliki nilai manfaat bagi pemain untuk di konsumsi sehingga dapat tetap menjalankan aktivitas di dunia metaxot, disamping itu tanaman juga dapat mendatangkan keuntungan bagia pemain melalui transkasi jual-beli. Tanam lebih dari 50 jenis bibit yang tersedia di metaxot dan kreasikan resep anda untuk menciptakan makanan bernilai tinggi dari tumbuhan yang anda tanam sendiri di perkebunan anda."
+    }
+  },
+  "mining": {
+    "title": "Pertambangan",
+    "contents": {
+      "main": "Setiap pemain dapat menambang di area pegunungan maupun area tertentu yang dapat menghasilkan hasil bumi seperti bebatuan dan mineral unik, yang memiliki manfaat untuk menciptakan level baru alat-alat anda. Semakin unik atau langka item mineral yang di dapatkan maka akan mempermudah anda untuk menaikan level alat-alat anda. Lebih dari 50 jenis batu dan mineral yang tersedia di metaxot yang siap anda tambang, semakin tinggi intensitas anda menambang maka semakin besar kemungkinan anda mendapatkan mineral langka. Ayo mulai menambang!"
+    }
+  },
+  "farming": {
+    "title": "Peternakan",
+    "contents": {
+      "main": "Merawat hewan ternak dan mengambil hasilnya adalah salah satu tujuan yang bisa anda lakukan di metaxot, ayam, domba, babi dan sapi adalah hewan ternak yang dapat anda ambil manfaat nya untuk membuat makanan, produk olahan, maupun resep baru yang bernilai tinggi."
+    }
+  },
+  "fishery": {
+    "title": "Perikanan",
+    "contents": {
+      "main": "Lebih dari 100 jenis ikan dan hewan laut yang bisa anda dapatkan di metaxot, pergi memancing di hari yang senggang dan menikmati keindahan adalah pilihan terbaik, hasil yang didapatkan bisa digunakan untuk keperluan makanan maupun koleksi, beberapa jenis ikan dapat anda budidaya untuk diambil manfaatnya, jika terasa kurang jelajahi dunia metaxot dan temukan spot rahasia untuk mendapatkan ikan monster."
+    }
+  },
+  "work": {
+    "title": "Pekerjaan",
+    "contents": {
+      "main": "Untuk tetap eksis di metaxot setiap pemain juga dapat memilih karir mereka sendiri yang akan membuat pemain mendapatkan penghasilan, kebebasan berkreasi bagi setiap pemain juga akan menghasilkan banyak sekali kesempatan kerja untuk mendapatkan uang, jangan berhenti hanya pada mencari work, metaxot adalah tempat terbaik bagi setiap pemain untuk membangun bisnis dan mempekerjakan pemain lain untuk mencapai hasil yang anda inginkan."
+    }
+  },
+  "tournament": {
+    "title": "Turnamen",
+    "contents": {
+      "main": "Untuk tetap eksis di metaxot setiap pemain juga dapat memilih karir mereka sendiri yang akan membuat pemain mendapatkan penghasilan, kebebasan berkreasi bagi setiap pemain juga akan menghasilkan banyak sekali kesempatan kerja untuk mendapatkan uang, jangan berhenti hanya pada mencari work, metaxot adalah tempat terbaik bagi setiap pemain untuk membangun bisnis dan mempekerjakan pemain lain untuk mencapai hasil yang anda inginkan."
+    }
+  },
+  "craft": {
+    "title": "Kerajinan",
+    "contents": {
+      "main": "Item tertentu di metaxot dapat digabungkan maupun di tingkatkan untuk menciptakan item baru, yang akan diperlukan pemain untuk menjalani kehidupan di metaxot, Namun lebih dari itu item baru yang berhasil dibuat dan bernilai tinggi juga dapat menghasilkan keuntungan bagi pemain melalui sistem jual beli antar pemain."
+    }
+  },
+  "skillTree": {
+    "title": "Skill Tree",
+    "contents": {
+      "main": "Pemain yang kompetitif akan membutuhkan atribut yang maksimal untuk dapat menjalankan perannya di dunia metaxot, bangun skill anda untuk mencapai target yang anda inginkan dan membuka peluang untuk mengikuti event-event dengan kualifikasi karakter yang tinggi."
+    }
+  },
+  "building": {
+    "title": "Bangunan",
+    "contents": {
+      "main": "Pemain yang kompetitif akan membutuhkan atribut yang maksimal untuk dapat menjalankan perannya di dunia metaxot, bangun skill anda untuk mencapai target yang anda inginkan dan membuka peluang untuk mengikuti event-event dengan kualifikasi karakter yang tinggi."
+    }
+  },
+  "followAndLike": {
+    "title": "Follow and Like",
+    "contents": {
+      "main": "Skema follow and like untuk setiap property dan karakter pemain dapat meningkatkan status sosial didunia metaxot, dengan menjadi terkenal mempermudah pemain untuk menginsiprasi banyak pemain,memimpin komunitas sosial, membangun hubungan, dan tentunya memperoleh keuntungan."
+    }
+  },
+  "robopet": {
+    "title": "Robopet",
+    "contents": {
+      "main": "Memiliki teman yang dapat mempermudah aktivitas di dunia metaxot sangatlah diperlukan, bertema animal fiksi dengan kesan visual yang canggih akan meningkatkan nilai anda dari pemain lain, selain itu anda tidak perlu menyiapkan makanan untuk robopet kesayangn anda, mereka yang akan menyimpan makanan untuk anda dan item lain yang diperlukan di dunia metaxot. Bangun fungsi dan fitur yang canggih untuk robopet anda."
+    }
+  },
+  "quest": {
+    "title": "Quest",
+    "contents": {
+      "main": "Ikuti setiap quest mission untuk mendapatkan hadiah menarik yang disediakan, berbagai variasi pilihan misi dan hadiah item unik dan langka menciptakan suasana kompetitif yang bersemangat dan raih hadiah pertama-mu."
+    }
+  },
+  "currency": {
+    "title": "Mata Uang",
+    "contents": {
+      "main": "Metaxot memiliki Yotta sebagai mata uang yang digunakan untuk setiap aktivitas jual beli dalam game dan XPC untuk setiap mekanisme jual beli berbasis blockchain, yotta memberikan kemudahan pemain untuk bertransaksi di dalam game sedangkan XPC memberi keamanan terhadap nilai asset yang dapat diuangkan kembali oleh setiap pemain di dunia nyata."
+    }
+  },
+  "others": {
+    "title": "Dan Masih Banyak Lagi",
+    "contents": {
+      "sub.1": "<b>Zoo</b> : Keberagaman fauna baik nyata maupun fiksi dan informasi yang berguna dapat anda temukan di metaxot, interaksi dengan hewan-hewan tersebut juga bukan hal yang mustahil , ingin menunggangi unicorn ? Kunjungi Metaxot zoo segera!\n<b>Hotel</b> : Setiap pemain memiliki kebutuhan untuk beristirahat , jika anda belum membangun rumah anda sendiri dan menetap, tinggal di hotel adalah pilihan terbaik.",
+      "sub.2": "<b>Arcade</b> : Game di dalam game ? Nikmati bermain game secara immersive di metaxot tanpa harus instalasi atau alat dukung tambahan, hanya pilih game yang tersedia untuk dimainkan dan bersenang-senang.\n<b>Investment</b> : Hasilkan keuntungan secara regular sesuai dengan profil investasi anda di metaxot, keamanan dan keandalan sistem serta kemudahan transkasi selalu dikedapankan demi kenyamanan pemain."
+    }
+  }
+}

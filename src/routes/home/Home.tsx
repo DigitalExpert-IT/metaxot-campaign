@@ -5,6 +5,7 @@ import Roadmap from "./Roadmap";
 import TheGame from "./TheGame";
 import MetaxotCore from "./MetaxotCore";
 import RiskAndCurrent from "./RiskAndCurrent";
+import Features from "./Features";
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
           <Roadmap />
           <TheGame />
           <MetaxotCore />
+          <Features />
           <RiskAndCurrent />
         </Box>
       </Container>
