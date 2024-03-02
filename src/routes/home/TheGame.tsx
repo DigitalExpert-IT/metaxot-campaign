@@ -14,7 +14,7 @@ const TheGame: React.FC = () => {
         flexDirection={{ base: "column", md: "row" }}
         gap={4}
       >
-        <Box fontSize={"xl"} >
+        <Box fontSize={"xl"} textAlign={"justify"}>
           <Text mt={14}>{t("theGame.content.paragraphOne")}</Text>
           <Text>{t("theGame.content.paragraphTwo")}</Text>
         </Box>
