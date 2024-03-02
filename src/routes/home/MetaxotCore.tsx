@@ -1,5 +1,4 @@
 import { Box, Img, Text } from "@chakra-ui/react";
-import rightTitleShapeUrl from "@/assets/images/title-shape-right.png";
 import { useTranslation } from "react-i18next";
 import rightTitleShapeOneUrl from "@/assets/images/title-shape-right-1.png";
 import leftTitleShapeOneUrl from "@/assets/images/title-shape-left-1.png";
@@ -10,6 +9,7 @@ import metaverseFourUrl from "@/assets/images/metaverse-4.png";
 import metaverseFiveUrl from "@/assets/images/metaverse-5.png";
 import metaverseSixUrl from "@/assets/images/metaverse-6.png";
 import metaversePlaceholderUrl from "@/assets/images/metaverse-placeholder.png";
+import SectionTitle from "@/components/SectionTitle";
 
 const MetaxotCore: React.FC = () => {
   const { t } = useTranslation();
@@ -27,20 +27,7 @@ const MetaxotCore: React.FC = () => {
   return (
     <Box display={"flex"} flexDirection={"column"} gap={6}>
       <Box display={"flex"} flexDirection={"row"} alignItems={"center"} gap={6}>
-        <Text
-          color={"white"}
-          fontFamily={"unlock"}
-          lineHeight={"3"}
-          fontSize={"3xl"}
-          fontWeight={700}
-        >
-          {t("metaxotCore.title")}
-        </Text>
-        <Img
-          src={rightTitleShapeUrl}
-          alt={"A shape at the right side of title"}
-          maxH={"6px"}
-        />
+        <SectionTitle title={t("metaxotCore.title")} />
       </Box>
       <Box
         display={"flex"}
