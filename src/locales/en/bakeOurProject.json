@@ -1,0 +1,17 @@
+{
+  "selectPerks": "Select one of perks list below :",
+  "rewardCards": {
+    "first": {
+      "title": "$1 “Thank You”",
+      "subtitle": "Digital Thank you Certificate Exclusive Wallpaper"
+    },
+    "second": {
+      "title": "$10 “Early Access”",
+      "subtitle": "“Thank You” rewards Early Access to Beta"
+    },
+    "third": {
+      "title": "$30 “The Worker”",
+      "subtitle": "“Early Access” rewards Exclusive Farming Tools Exclusive Seeds x5"
+    }
+  }
+}

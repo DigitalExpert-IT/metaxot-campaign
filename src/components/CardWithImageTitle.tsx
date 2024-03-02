@@ -1,0 +1,37 @@
+import { ICardWithImageTitle } from "@/constant/bakeOurProject";
+import { Box, Text, Img } from "@chakra-ui/react";
+
+const CardWithImageTitle = (props: ICardWithImageTitle) => {
+  const { title, subtitle, imageUrl } = props;
+
+  return (
+    <Box
+      display={"flex"}
+      flexDirection={"row"}
+      backgroundColor={"#939393"}
+      borderRadius={30}
+      justifyContent={"flex-between"}
+      alignItems={"center"}
+      gap={40}
+      paddingX={10}
+    >
+      <Img
+        src={imageUrl}
+        display={{ base: "none", md: "block" }}
+        alt={title}
+        paddingTop={4}
+        maxW={236}
+      />
+      <Box display={"flex"} flexDirection={"column"} textAlign={"center"}>
+        <Text color={"white"} fontSize={"3xl"}>
+          {title}
+        </Text>
+        <Text color={"#FFBFFC"} fontSize={"2xl"} maxW={400}>
+          {subtitle}
+        </Text>
+      </Box>
+    </Box>
+  );
+};
+
+export default CardWithImageTitle;
