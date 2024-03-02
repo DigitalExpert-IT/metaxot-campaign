@@ -1,6 +1,6 @@
 import SectionTitle from "@/components/SectionTitle";
-import { Box, Flex, Img, Text } from "@chakra-ui/react";
-import imgSupportUs from "@/assets/images/support-us.png";
+import { Box, Img, Text } from "@chakra-ui/react";
+import imgSupportUsUrl from "@/assets/images/support-us.png";
 import { useTranslation } from "react-i18next";
 
 const RiskAndCurrent = () => {
@@ -11,9 +11,9 @@ const RiskAndCurrent = () => {
       <Text fontSize={"xl"} mt={14} textAlign={"justify"}>
         {t("currentStatus.description")}
       </Text>
-      <Flex justify={"center"} my={10}>
-        <Img src={imgSupportUs} />
-      </Flex>
+      <Box display={"flex"} justifyContent={"center"} my={10}>
+        <Img src={imgSupportUsUrl} />
+      </Box>
       <SectionTitle title={t("riskAndChallenge.title")} my={20} />
       <Text fontSize={"xl"} mt={14} textAlign={"justify"}>
         {t("riskAndChallenge.description")}
