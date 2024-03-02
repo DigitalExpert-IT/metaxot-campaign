@@ -1,5 +1,5 @@
 import { Styles } from "@chakra-ui/theme-tools";
-import "@fontsource/urbanist"
+import "@fontsource/urbanist";
 export const styles: Styles = {
   global: {
     body: {
@@ -11,6 +11,7 @@ export const styles: Styles = {
       transitionDuration: "normal",
       lineHeight: "base",
       display: "block",
+      whiteSpace: "pre-line",
     },
     "*::placeholder": {
       color: "chakra-placeholder-color",

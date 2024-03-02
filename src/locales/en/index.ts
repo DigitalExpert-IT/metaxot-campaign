@@ -5,6 +5,7 @@ import theGame from "./theGame.json";
 import metaxotCore from "./metaxotCore.json";
 import footer from "./footer.json";
 import riskAndCurrent from "./riskAndCurrent.json";
+import features from "./features.json";
 
 const en = {
   ...navigation,
@@ -14,6 +15,7 @@ const en = {
   ...metaxotCore,
   ...footer,
   ...riskAndCurrent,
+  ...features,
 };
 
 export default en;
