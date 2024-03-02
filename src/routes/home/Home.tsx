@@ -7,6 +7,7 @@ import MetaxotCore from "./MetaxotCore";
 import RiskAndCurrent from "./RiskAndCurrent";
 import Features from "./Features";
 import BakeOurProject from "./BakeOurProject";
+import Development from "./Development";
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
           <MetaxotCore />
           <Features />
           <BakeOurProject />
+          <Development />
           <RiskAndCurrent />
         </Box>
       </Container>
