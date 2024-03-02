@@ -7,6 +7,7 @@ import footer from "./footer.json";
 import riskAndCurrent from "./riskAndCurrent.json";
 import features from "./features.json";
 import bakeOurProject from "./bakeOurProject.json";
+import development from "./development.json";
 
 const en = {
   ...navigation,
@@ -18,6 +19,7 @@ const en = {
   ...riskAndCurrent,
   ...features,
   ...bakeOurProject,
+  ...development,
 };
 
 export default en;
