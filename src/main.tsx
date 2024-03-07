@@ -1,27 +1,52 @@
 import "./locales/index.ts";
 import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
-import {
-  Route,
-  RouterProvider,
-  createBrowserRouter,
-  createRoutesFromElements,
-} from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import NiceModal from "@ebay/nice-modal-react";
+import axios from "axios";
 import theme from "./theme/index.ts";
 import Home from "./routes/home/Home.tsx";
+import Login from "./routes/login/Login.tsx";
 
-const router = createBrowserRouter(
-  createRoutesFromElements(<Route path="/" element={<Home />}></Route>)
-);
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "*",
+    element: <div>Page not found</div>,
+  },
+]);
+const defaultQueryFn = async ({ queryKey }: any) => {
+  const { data } = await axios.get(`/api/${queryKey[0]}`);
+  return data;
+};
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      queryFn: defaultQueryFn,
+    },
+  },
+});
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
-      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-      <Suspense fallback={<></>}>
-        <RouterProvider router={router} />
-      </Suspense>
+      <QueryClientProvider client={queryClient}>
+        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+        <Suspense fallback={<></>}>
+          <NiceModal.Provider>
+            <RouterProvider router={router} />
+          </NiceModal.Provider>
+        </Suspense>
+      </QueryClientProvider>
     </ChakraProvider>
   </React.StrictMode>
 );
