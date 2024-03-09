@@ -11,17 +11,17 @@ import {
 } from "@chakra-ui/react";
 import { FramerBox } from "@/components/animation";
 import { SubmitHandler, useForm } from "react-hook-form";
-import useAuth, { ILoginForm } from "@/hooks/useAuth";
+import useAuth, { IRegisterForm } from "@/hooks/useAuth";
 import metaxotLogoUrl from "@/assets/images/metaxot-logo-white.png";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-const Login = () => {
+const Register = () => {
   const submitRef = useRef<any>(null);
-  const { login, isLoadingLogin } = useAuth();
-  const { register, handleSubmit } = useForm<ILoginForm>();
-  const onSubmit: SubmitHandler<ILoginForm> = (data) => {
-    login(data);
+  const { register: _register, isLoadingRegister } = useAuth();
+  const { register, handleSubmit } = useForm<IRegisterForm>();
+  const onSubmit: SubmitHandler<IRegisterForm> = (data) => {
+    _register(data);
   };
   const { t } = useTranslation();
   const [host, setHost] = useState("");
@@ -109,8 +109,7 @@ const Login = () => {
           >
             <Image width={16} src={metaxotLogoUrl} alt="logo" />
             <Box textAlign={"center"} mb={4}>
-              <Text fontSize={"4xl"}>{t("login.title")}</Text>
-              <Text>{t("login.subtitle")}</Text>
+              <Text fontSize={"4xl"}>{t("register.title")}</Text>
             </Box>
 
             <Box>
@@ -123,7 +122,6 @@ const Login = () => {
                     {...register("email")}
                   />
                 </FormControl>
-
                 <FormControl mt={4}>
                   <FormLabel>Password</FormLabel>
                   <Input
@@ -133,22 +131,31 @@ const Login = () => {
                     {...register("password")}
                   />
                 </FormControl>
+                <FormControl mt={4}>
+                  <FormLabel>Password Confirmation</FormLabel>
+                  <Input
+                    type="password"
+                    placeholder="Password Confirmation"
+                    boxShadow={"inset 0 0 10px #55009a"}
+                    {...register("passwordConfirmation")}
+                  />
+                </FormControl>
 
                 <Button
                   width={"full"}
                   ref={submitRef}
                   type="submit"
                   colorScheme="blue"
-                  isLoading={isLoadingLogin}
+                  isLoading={isLoadingRegister}
                   mt={8}
                 >
-                  {t("login.title")}
+                  {t("register.title")}
                 </Button>
                 <Box mt={2}>
                   <Text>
-                    {t("login.dontHaveAccount")}
+                    {t("register.accountExist")}
                     <Text as={"span"} color={"blue.500"} ml={2}>
-                      <Link to={"/register"}>{t("login.clickHere")}</Link>
+                      <Link to={"/login"}>{t("register.clickHere")}</Link>
                     </Text>
                   </Text>
                 </Box>
@@ -161,4 +168,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

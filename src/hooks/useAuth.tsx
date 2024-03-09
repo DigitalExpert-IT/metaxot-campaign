@@ -11,6 +11,12 @@ export interface ILoginForm {
   password: string;
 }
 
+export interface IRegisterForm {
+  email: string;
+  password: string;
+  passwordConfirmatiom: string;
+}
+
 interface IUserData {
   uid: string;
   email: string;
@@ -43,7 +49,7 @@ const useAuth = () => {
     };
   }, [token]);
 
-  const { exec: authenticate, isLoading } = useAsyncCall(
+  const { exec: login, isLoadingLogin } = useAsyncCall(
     async ({ email, password }: ILoginForm) => {
       try {
         const response = await axiosRef.post("/login", {
@@ -56,7 +62,27 @@ const useAuth = () => {
         localStorage.setItem("userData", JSON.stringify(user));
 
         navigate(-1);
-        return { successMessage: t("succes.successLogin") };
+        return { successMessage: t("login.success") };
+      } catch (error) {
+        throw new Error("Authentication failed");
+      }
+    }
+  );
+
+  const { exec: register, isLoadingRegister } = useAsyncCall(
+    async ({ email, password, passwordConfirmation }: IRegisterForm) => {
+      try {
+        const response = await axiosRef.post("/register", {
+          email,
+          password,
+          passwordConfirmation,
+        });
+
+        //TO-DO: Send verify email from UI (?)
+        const { message, confirmationCode } = response.data.result;
+
+        navigate(-1);
+        return { successMessage: message };
       } catch (error) {
         throw new Error("Authentication failed");
       }
@@ -82,10 +108,12 @@ const useAuth = () => {
   };
 
   return {
-    authenticate,
+    login,
+    isLoadingLogin,
+    register,
+    isLoadingRegister,
     isAuthenticated: !!token,
     logout,
-    isLoading,
     userData: userData(),
   };
 };

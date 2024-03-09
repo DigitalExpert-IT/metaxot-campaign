@@ -8,6 +8,7 @@ import riskAndCurrent from "./riskAndCurrent.json";
 import features from "./features.json";
 import bakeOurProject from "./bakeOurProject.json";
 import development from "./development.json";
+import registerAndLogin from "./registerAndLogin.json";
 
 const en = {
   ...navigation,
@@ -20,6 +21,7 @@ const en = {
   ...features,
   ...bakeOurProject,
   ...development,
+  ...registerAndLogin,
 };
 
 export default en;

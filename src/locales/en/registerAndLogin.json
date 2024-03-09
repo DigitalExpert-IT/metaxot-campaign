@@ -1,0 +1,15 @@
+{
+  "register": {
+    "title": "Register",
+    "accountExist": "Already have an account?",
+    "clickHere": "Click here to login"
+  },
+  "login": {
+    "title": "Login",
+    "subtitle": "with game account",
+    "success": "Login success",
+    "failed": "Login failed",
+    "dontHaveAccount": "Don't have any account?",
+    "clickHere": "Click here to register"
+  }
+}

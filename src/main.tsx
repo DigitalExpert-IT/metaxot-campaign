@@ -9,6 +9,7 @@ import axios from "axios";
 import theme from "./theme/index.ts";
 import Home from "./routes/home/Home.tsx";
 import Login from "./routes/login/Login.tsx";
+import Register from "./routes/register/Register.tsx";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
   },
   {
     path: "*",
