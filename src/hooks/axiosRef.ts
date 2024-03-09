@@ -7,7 +7,7 @@ interface IError {
 }
 
 const axiosRef = axios.create({
-  baseURL: import.meta.env.NEXT_PUBLIC_METAXOT_API,
+  baseURL: import.meta.env.VITE_METAXOT_API,
   timeout: 5000,
 });
 
