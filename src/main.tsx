@@ -29,6 +29,7 @@ const router = createBrowserRouter([
     element: <div>Page not found</div>,
   },
 ]);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const defaultQueryFn = async ({ queryKey }: any) => {
   const { data } = await axios.get(`/api/${queryKey[0]}`);
   return data;

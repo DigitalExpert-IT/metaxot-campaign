@@ -1,9 +1,10 @@
+// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/ban-types
 const isFunction = (value: any): value is Function =>
-  typeof value === "function"
+  typeof value === "function";
 
 export function runIfFn<T, U>(
   valueOrFn: T | ((...fnArgs: U[]) => T),
   ...args: U[]
 ): T {
-  return isFunction(valueOrFn) ? valueOrFn(...args) : valueOrFn
+  return isFunction(valueOrFn) ? valueOrFn(...args) : valueOrFn;
 }

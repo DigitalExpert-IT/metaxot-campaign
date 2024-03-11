@@ -17,7 +17,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const Register = () => {
-  const submitRef = useRef<any>(null);
+  const buttonSubmitRef = useRef<HTMLButtonElement>(null);
   const { register: _register, isLoadingRegister } = useAuth();
   const { register, handleSubmit } = useForm<IRegisterForm>();
   const onSubmit: SubmitHandler<IRegisterForm> = (data) => {
@@ -111,7 +111,6 @@ const Register = () => {
             <Box textAlign={"center"} mb={4}>
               <Text fontSize={"4xl"}>{t("register.title")}</Text>
             </Box>
-
             <Box>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <FormControl>
@@ -140,10 +139,9 @@ const Register = () => {
                     {...register("passwordConfirmation")}
                   />
                 </FormControl>
-
                 <Button
                   width={"full"}
-                  ref={submitRef}
+                  ref={buttonSubmitRef}
                   type="submit"
                   colorScheme="blue"
                   isLoading={isLoadingRegister}

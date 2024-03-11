@@ -8,6 +8,7 @@ const format = (message?: string | null) => {
     .replace(/\s\(.+/, "");
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getErrorMessage = (error: any) => {
   const errorTemp = `error.errorCode.${error.code}`;
   const errorCode = t(errorTemp);

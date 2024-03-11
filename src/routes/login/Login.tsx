@@ -17,7 +17,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const Login = () => {
-  const submitRef = useRef<any>(null);
+  const buttonSubmitRef = useRef<HTMLButtonElement>(null);
   const { login, isLoadingLogin } = useAuth();
   const { register, handleSubmit } = useForm<ILoginForm>();
   const onSubmit: SubmitHandler<ILoginForm> = (data) => {
@@ -112,7 +112,6 @@ const Login = () => {
               <Text fontSize={"4xl"}>{t("login.title")}</Text>
               <Text>{t("login.subtitle")}</Text>
             </Box>
-
             <Box>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <FormControl>
@@ -123,7 +122,6 @@ const Login = () => {
                     {...register("email")}
                   />
                 </FormControl>
-
                 <FormControl mt={4}>
                   <FormLabel>Password</FormLabel>
                   <Input
@@ -133,10 +131,9 @@ const Login = () => {
                     {...register("password")}
                   />
                 </FormControl>
-
                 <Button
                   width={"full"}
-                  ref={submitRef}
+                  ref={buttonSubmitRef}
                   type="submit"
                   colorScheme="blue"
                   isLoading={isLoadingLogin}

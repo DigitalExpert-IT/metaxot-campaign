@@ -14,7 +14,7 @@ export interface ILoginForm {
 export interface IRegisterForm {
   email: string;
   password: string;
-  passwordConfirmatiom: string;
+  passwordConfirmation: string;
 }
 
 interface IUserData {
@@ -49,7 +49,7 @@ const useAuth = () => {
     };
   }, [token]);
 
-  const { exec: login, isLoadingLogin } = useAsyncCall(
+  const { exec: login, isLoading: isLoadingLogin } = useAsyncCall(
     async ({ email, password }: ILoginForm) => {
       try {
         const response = await axiosRef.post("/login", {
@@ -69,7 +69,7 @@ const useAuth = () => {
     }
   );
 
-  const { exec: register, isLoadingRegister } = useAsyncCall(
+  const { exec: register, isLoading: isLoadingRegister } = useAsyncCall(
     async ({ email, password, passwordConfirmation }: IRegisterForm) => {
       try {
         const response = await axiosRef.post("/register", {
