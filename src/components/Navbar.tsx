@@ -19,7 +19,8 @@ interface INavbar {
 const MenuList: React.FC<INavbar> = ({ data }) => {
   return (
     <>
-      {data.map((item, idx) => (
+      {data.map((item, idx) => {
+        return (
         <Link key={idx} href={item.link} _hover={{ textDecoration: "none" }}>
           <Text
             fontWeight="bold"
@@ -31,7 +32,8 @@ const MenuList: React.FC<INavbar> = ({ data }) => {
             {item.name}
           </Text>
         </Link>
-      ))}
+        )
+      })}
     </>
   );
 };

@@ -12,15 +12,15 @@ export interface INavigation {
 export const Navigation: Array<INavigation> = [
   {
     name: "Download",
-    link: "#",
+    link: "#Download",
   },
   {
     name: "FAQ",
-    link: "#",
+    link: "#FAQ",
   },
   {
     name: "Backer",
-    link: "#",
+    link: "#Backer",
   },
 ];
 
