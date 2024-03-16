@@ -9,6 +9,7 @@ import features from "./features.json";
 import bakeOurProject from "./bakeOurProject.json";
 import development from "./development.json";
 import registerAndLogin from "./registerAndLogin.json";
+import notFound from "./notFound.json";
 
 const en = {
   ...navigation,
@@ -22,6 +23,7 @@ const en = {
   ...bakeOurProject,
   ...development,
   ...registerAndLogin,
+  ...notFound,
 };
 
 export default en;

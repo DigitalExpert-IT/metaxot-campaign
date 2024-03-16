@@ -10,6 +10,7 @@ import theme from "./theme/index.ts";
 import Home from "./routes/home/Home.tsx";
 import Login from "./routes/login/Login.tsx";
 import Register from "./routes/register/Register.tsx";
+import NotFound from "./routes/notFound/NotFound.tsx";
 
 const router = createBrowserRouter([
   {
@@ -26,9 +27,10 @@ const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <div>Page not found</div>,
+    element: <NotFound />,
   },
 ]);
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const defaultQueryFn = async ({ queryKey }: any) => {
   const { data } = await axios.get(`/api/${queryKey[0]}`);
