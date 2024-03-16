@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import {
   Box,
   Container,
@@ -24,13 +24,6 @@ const Login = () => {
     login(data);
   };
   const { t } = useTranslation();
-  const [host, setHost] = useState("");
-
-  useEffect(() => {
-    if (window.location.host) {
-      setHost(window.location.host);
-    }
-  }, []);
 
   return (
     <Box

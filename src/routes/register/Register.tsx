@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import {
   Box,
   Container,
@@ -20,17 +20,14 @@ const Register = () => {
   const buttonSubmitRef = useRef<HTMLButtonElement>(null);
   const { register: _register, isLoadingRegister } = useAuth();
   const { register, handleSubmit } = useForm<IRegisterForm>();
-  const onSubmit: SubmitHandler<IRegisterForm> = (data) => {
-    _register(data);
+  const onSubmit: SubmitHandler<IRegisterForm> = async (data) => {
+    const response = await _register(data);
+
+    if (response.confirmationLink)
+      setConfirmationLink(response.confirmationLink);
   };
   const { t } = useTranslation();
-  const [host, setHost] = useState("");
-
-  useEffect(() => {
-    if (window.location.host) {
-      setHost(window.location.host);
-    }
-  }, []);
+  const [confirmationLink, setConfirmationLink] = useState("");
 
   return (
     <Box
@@ -112,52 +109,63 @@ const Register = () => {
               <Text fontSize={"4xl"}>{t("register.title")}</Text>
             </Box>
             <Box>
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <FormControl>
-                  <FormLabel>Email</FormLabel>
-                  <Input
-                    placeholder="Email"
-                    boxShadow={"inset 0 0 10px #55009a"}
-                    {...register("email")}
-                  />
-                </FormControl>
-                <FormControl mt={4}>
-                  <FormLabel>Password</FormLabel>
-                  <Input
-                    type="password"
-                    placeholder="Password"
-                    boxShadow={"inset 0 0 10px #55009a"}
-                    {...register("password")}
-                  />
-                </FormControl>
-                <FormControl mt={4}>
-                  <FormLabel>Password Confirmation</FormLabel>
-                  <Input
-                    type="password"
-                    placeholder="Password Confirmation"
-                    boxShadow={"inset 0 0 10px #55009a"}
-                    {...register("passwordConfirmation")}
-                  />
-                </FormControl>
-                <Button
-                  width={"full"}
-                  ref={buttonSubmitRef}
-                  type="submit"
-                  colorScheme="blue"
-                  isLoading={isLoadingRegister}
-                  mt={8}
-                >
-                  {t("register.title")}
-                </Button>
-                <Box mt={2}>
+              {confirmationLink ? (
+                <Box>
                   <Text>
-                    {t("register.accountExist")}
-                    <Text as={"span"} color={"blue.500"} ml={2}>
-                      <Link to={"/login"}>{t("register.clickHere")}</Link>
-                    </Text>
+                    {t("register.confirmRegistration")}{" "}
+                    <Box as={"a"} href={confirmationLink} color={"blue.500"}>
+                      {t("register.here")}
+                    </Box>
                   </Text>
                 </Box>
-              </form>
+              ) : (
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  <FormControl>
+                    <FormLabel>Email</FormLabel>
+                    <Input
+                      placeholder="Email"
+                      boxShadow={"inset 0 0 10px #55009a"}
+                      {...register("email")}
+                    />
+                  </FormControl>
+                  <FormControl mt={4}>
+                    <FormLabel>Password</FormLabel>
+                    <Input
+                      type="password"
+                      placeholder="Password"
+                      boxShadow={"inset 0 0 10px #55009a"}
+                      {...register("password")}
+                    />
+                  </FormControl>
+                  <FormControl mt={4}>
+                    <FormLabel>Password Confirmation</FormLabel>
+                    <Input
+                      type="password"
+                      placeholder="Password Confirmation"
+                      boxShadow={"inset 0 0 10px #55009a"}
+                      {...register("passwordConfirmation")}
+                    />
+                  </FormControl>
+                  <Button
+                    width={"full"}
+                    ref={buttonSubmitRef}
+                    type="submit"
+                    colorScheme="blue"
+                    isLoading={isLoadingRegister}
+                    mt={8}
+                  >
+                    {t("register.title")}
+                  </Button>
+                  <Box mt={2}>
+                    <Text>
+                      {t("register.accountExist")}
+                      <Text as={"span"} color={"blue.500"} ml={2}>
+                        <Link to={"/login"}>{t("register.clickHere")}</Link>
+                      </Text>
+                    </Text>
+                  </Box>
+                </form>
+              )}
             </Box>
           </Box>
         </FramerBox>

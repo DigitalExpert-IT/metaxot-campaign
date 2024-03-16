@@ -2,7 +2,9 @@
   "register": {
     "title": "Register",
     "accountExist": "Already have an account?",
-    "clickHere": "Click here to login"
+    "clickHere": "Click here to login",
+    "confirmRegistration": "Please confirm the registration by clicking",
+    "here": "here"
   },
   "login": {
     "title": "Login",
@@ -11,5 +13,8 @@
     "failed": "Login failed",
     "dontHaveAccount": "Don't have any account?",
     "clickHere": "Click here to register"
+  },
+  "logout": {
+    "title": "Logout"
   }
 }

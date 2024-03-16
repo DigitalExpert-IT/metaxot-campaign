@@ -1,6 +1,7 @@
 import metaxotLogoUrl from "../assets/images/metaxot-logo-white.png";
 import {
   Box,
+  Button,
   Center,
   Container,
   Image,
@@ -11,6 +12,8 @@ import {
 import WalletButton from "./WalletButton";
 import { INavigation } from "@/constant/navigation";
 import MenuDrawer from "./MenuDrawer";
+import { useTranslation } from "react-i18next";
+import useAuth from "@/hooks/useAuth";
 
 interface INavbar {
   data: INavigation[];
@@ -37,6 +40,9 @@ const MenuList: React.FC<INavbar> = ({ data }) => {
 };
 
 const Navbar: React.FC<INavbar> = ({ data }) => {
+  const { t } = useTranslation();
+  const { logout } = useAuth();
+
   return (
     <Center>
       <Stack
@@ -51,14 +57,24 @@ const Navbar: React.FC<INavbar> = ({ data }) => {
           <Box display={"flex"} alignItems={"center"}>
             <Box
               display={"flex"}
-              justifyContent={{ base: "start", md: "end" }}
+              justifyContent={{ base: "start", lg: "end" }}
               flex={1}
             >
+              <Stack
+                flex={1}
+                justify={"start"}
+                align={"center"}
+                direction={"row"}
+                spacing={"4rem"}
+                display={{ base: "none", lg: "flex" }}
+              >
+                <MenuList data={data} />
+              </Stack>
               <Image
-                mx={{ base: 4, md: 0 }}
+                mx={{ base: 4, lg: 0 }}
                 src={metaxotLogoUrl}
                 alt={"Metaxot Logo"}
-                w={{ base: 24, md: "auto" }}
+                w={{ base: 24, lg: "auto" }}
               />
             </Box>
             <Stack
@@ -67,14 +83,19 @@ const Navbar: React.FC<INavbar> = ({ data }) => {
               align={"center"}
               direction={"row"}
               spacing={"4rem"}
-              display={{ base: "none", md: "flex" }}
+              display={{ base: "none", lg: "flex" }}
             >
-              <MenuList data={data} />
               <WalletButton />
+              <Button type="submit" onClick={logout}>
+                {t("logout.title")}
+              </Button>
             </Stack>
             <MenuDrawer>
               <MenuList data={data} />
               <WalletButton />
+              <Button width={"full"} type="submit" mt={8} onClick={logout}>
+                {t("logout.title")}
+              </Button>
             </MenuDrawer>
           </Box>
         </Container>

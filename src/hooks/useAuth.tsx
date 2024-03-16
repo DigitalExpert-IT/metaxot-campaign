@@ -61,10 +61,10 @@ const useAuth = () => {
         Cookies.set("token", authorizationToken);
         localStorage.setItem("userData", JSON.stringify(user));
 
-        navigate(-1);
+        navigate("/");
         return { successMessage: t("login.success") };
-      } catch (error) {
-        throw new Error("Authentication failed");
+      } catch (error: any) {
+        throw new Error(error.message);
       }
     }
   );
@@ -77,14 +77,12 @@ const useAuth = () => {
           password,
           passwordConfirmation,
         });
+        const { message, confirmationCode: confirmationLink } =
+          response.data.result;
 
-        //TO-DO: Send verify email from UI (?)
-        const { message, confirmationCode } = response.data.result;
-
-        navigate(-1);
-        return { successMessage: message };
-      } catch (error) {
-        throw new Error("Authentication failed");
+        return { successMessage: message, confirmationLink };
+      } catch (error: any) {
+        throw new Error(error.message);
       }
     }
   );
