@@ -12,7 +12,7 @@ import Development from "./Development";
 const Home = () => {
   return (
     <Layout>
-      <Container maxW={"container.xl"}>
+      <Container maxW={"container.xl"} whiteSpace={"pre-line"}>
         <Box display={"flex"} flexDirection={"column"} gap={24}>
           <Header />
           <Roadmap />

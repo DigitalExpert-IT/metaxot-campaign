@@ -3,15 +3,12 @@ import "@fontsource/urbanist";
 export const styles: Styles = {
   global: {
     body: {
-      height: "100vh",
       fontFamily: "Urbanist",
       color: "chakra-body-text",
       bg: "black",
       transitionProperty: "background-color",
       transitionDuration: "normal",
       lineHeight: "base",
-      display: "block",
-      whiteSpace: "pre-line",
     },
     "*::placeholder": {
       color: "chakra-placeholder-color",
