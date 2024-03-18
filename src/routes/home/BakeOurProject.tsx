@@ -3,9 +3,16 @@ import bakeOurProjectUrl from "@/assets/images/bake-our-project.png";
 import { useTranslation } from "react-i18next";
 import { RewardList } from "@/constant/bakeOurProject";
 import CardWithImageTitle from "@/components/CardWithImageTitle";
+import { useBackerPackage } from "@/hooks/useBackerContract";
+import { useEffect } from "react";
 
 const BakeOurProject = () => {
   const { t } = useTranslation();
+  const backer = useBackerPackage();
+
+  useEffect(() => {
+    console.log("list packages: ", backer);
+  }, []);
 
   return (
     <Box

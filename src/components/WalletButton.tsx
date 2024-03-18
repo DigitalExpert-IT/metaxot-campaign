@@ -1,8 +1,17 @@
 import { Box, Text } from "@chakra-ui/react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";import {
+  useAddress,
+  useSetIsWalletModalOpen,
+  ConnectWallet
+} from "@thirdweb-dev/react";
 
 const WalletButton = () => {
   const { t } = useTranslation();
+  const openModal = useSetIsWalletModalOpen();
+  const address = useAddress();
+
+
+  if(address) return <ConnectWallet />;
 
   return (
     <Box
@@ -16,6 +25,7 @@ const WalletButton = () => {
       py={3}
       my={5}
       minW={100}
+      onClick={() => openModal(true)}
     >
       <Text
         color={"black"}

@@ -11,6 +11,18 @@ import Home from "./routes/home/Home.tsx";
 import Login from "./routes/login/Login.tsx";
 import Register from "./routes/register/Register.tsx";
 import NotFound from "./routes/notFound/NotFound.tsx";
+import ProtectedRoutes from "./routes/ProtectedRoutes.tsx";
+
+import {
+  ThirdwebProvider,
+  metamaskWallet,
+  phantomWallet,
+  trustWallet,
+} from "@thirdweb-dev/react";
+import { getActiveChain } from "./lib/chain";
+
+const targetChain = getActiveChain();  
+const CLIENT_ID = import.meta.env.NEXT_PUBLIC_THIRDWEB || "0";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +58,12 @@ const queryClient = new QueryClient({
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
+  <ThirdwebProvider
+    supportedChains={[targetChain]}
+    supportedWallets={[metamaskWallet(), trustWallet(), phantomWallet()]}
+    activeChain={targetChain}
+    clientId={CLIENT_ID}
+  >
     <ChakraProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
         <ColorModeScript initialColorMode={theme.config.initialColorMode} />
@@ -56,5 +74,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         </Suspense>
       </QueryClientProvider>
     </ChakraProvider>
+    </ThirdwebProvider>
   </React.StrictMode>
 );
