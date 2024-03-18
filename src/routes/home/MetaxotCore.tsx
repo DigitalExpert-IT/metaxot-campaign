@@ -62,7 +62,7 @@ const MetaxotCore: React.FC = () => {
           gap={2}
         >
           {imageUrls.map((url, idx) => (
-            <Img key={url} src={url} alt={`metaverse image ${idx + 1}`} />
+            <Img key={idx} src={url} alt={`metaverse image ${idx + 1}`} />
           ))}
         </Box>
       </Box>

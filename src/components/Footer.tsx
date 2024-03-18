@@ -16,11 +16,15 @@ const Footer = () => {
 
   return (
     <Container maxW={"container.xl"} py={20}>
-      <Flex justifyContent={"space-between"} direction={{base:'column', md:'row'}} align={'center'}>
+      <Flex
+        justifyContent={"space-between"}
+        direction={{ base: "column", md: "row" }}
+        align={"center"}
+      >
         <VStack
           h={"inherit"}
           justifyContent={"space-between"}
-          alignItems={{base:"center", md:"flex-end"}}
+          alignItems={{ base: "center", md: "flex-end" }}
         >
           <Flex gap={8} align={"center"}>
             <Image
@@ -29,14 +33,25 @@ const Footer = () => {
               alt={"Metaxot Logo"}
               w={{ base: 24, md: "auto" }}
             />
-            <Heading>{t('footer.title')}</Heading>
+            <Heading>{t("footer.title")}</Heading>
           </Flex>
-          <Text fontSize={"12px"} color={"#FFBFFC"}>{t('footer.copyright')}</Text>
+          <Text fontSize={"12px"} color={"#FFBFFC"}>
+            {t("footer.copyright")}
+          </Text>
         </VStack>
 
-        <VStack gap={5} alignItems={{base:"center" ,md:"flex-end"}} mt={{base:20, md:0}}>
+        <VStack
+          gap={5}
+          alignItems={{ base: "center", md: "flex-end" }}
+          mt={{ base: 20, md: 0 }}
+        >
           {FooterNav.map((link) => (
-            <Link display={"block"} href={link.link} color={"#FFBFFC"}>
+            <Link
+              display={"block"}
+              href={link.link}
+              color={"#FFBFFC"}
+              key={link.name}
+            >
               <Text fontSize={"24px"} color={"#FFBFFC"}>
                 {link.name}
               </Text>

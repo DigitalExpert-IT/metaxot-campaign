@@ -14,6 +14,7 @@ import { INavigation } from "@/constant/navigation";
 import MenuDrawer from "./MenuDrawer";
 import { useTranslation } from "react-i18next";
 import useAuth from "@/hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 interface INavbar {
   data: INavigation[];
@@ -41,7 +42,8 @@ const MenuList: React.FC<INavbar> = ({ data }) => {
 
 const Navbar: React.FC<INavbar> = ({ data }) => {
   const { t } = useTranslation();
-  const { logout } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <Center>
@@ -86,15 +88,23 @@ const Navbar: React.FC<INavbar> = ({ data }) => {
               display={{ base: "none", lg: "flex" }}
             >
               <WalletButton />
-              <Button type="submit" onClick={logout}>
-                {t("logout.title")}
+              <Button
+                type="submit"
+                onClick={isAuthenticated ? logout : () => navigate("/login")}
+              >
+                {t(isAuthenticated ? "logout.title" : "login.title")}
               </Button>
             </Stack>
             <MenuDrawer>
               <MenuList data={data} />
               <WalletButton />
-              <Button width={"full"} type="submit" mt={8} onClick={logout}>
-                {t("logout.title")}
+              <Button
+                width={"full"}
+                type="submit"
+                mt={8}
+                onClick={isAuthenticated ? logout : () => navigate("/login")}
+              >
+                {isAuthenticated ? t("logout.title") : t("login.title")}
               </Button>
             </MenuDrawer>
           </Box>

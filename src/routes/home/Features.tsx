@@ -8,7 +8,7 @@ const Features: React.FC = () => {
 
   const transformFeature = (feature: IFeatureList) => {
     const mapSubContent = feature?.texts.subContent?.map((sub) => (
-      <Trans i18nKey={sub} components={{ b: <b /> }} />
+      <Trans i18nKey={sub} key={sub} components={{ b: <b /> }} />
     ));
 
     return {
@@ -32,6 +32,7 @@ const Features: React.FC = () => {
     <Box display={"flex"} flexDirection={"column"} gap={6}>
       {transformedFeatureList.map((feature) => (
         <Feature
+          key={feature.title}
           title={feature.title}
           texts={feature.texts}
           imageUrl={feature.imgUrl}

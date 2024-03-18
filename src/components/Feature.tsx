@@ -73,8 +73,10 @@ const Feature: React.FC<IFeature> = ({ title, direction, imageUrl, texts }) => {
                   gap={16}
                   justifyContent={"center"}
                 >
-                  {texts.subContent.map((subContent) => (
-                    <Text flex={1}>{subContent}</Text>
+                  {texts.subContent.map((subContent, idx) => (
+                    <Text flex={1} key={idx}>
+                      {subContent}
+                    </Text>
                   ))}
                 </Box>
               ) : null}

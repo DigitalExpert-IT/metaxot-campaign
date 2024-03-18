@@ -13,7 +13,7 @@ import { FramerBox } from "@/components/animation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import useAuth, { IRegisterForm } from "@/hooks/useAuth";
 import metaxotLogoUrl from "@/assets/images/metaxot-logo-white.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const Register = () => {
@@ -28,6 +28,7 @@ const Register = () => {
   };
   const { t } = useTranslation();
   const [confirmationLink, setConfirmationLink] = useState("");
+  const navigate = useNavigate();
 
   return (
     <Box
@@ -113,7 +114,14 @@ const Register = () => {
                 <Box>
                   <Text>
                     {t("register.confirmRegistration")}{" "}
-                    <Box as={"a"} href={confirmationLink} color={"blue.500"}>
+                    <Box
+                      as={"a"}
+                      href={confirmationLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      color={"blue.500"}
+                      onClick={() => navigate("/login")}
+                    >
                       {t("register.here")}
                     </Box>
                   </Text>
