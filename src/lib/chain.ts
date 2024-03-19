@@ -50,5 +50,5 @@ const chainMap = {
 };
 
 export const getActiveChain = () => {
-  return chainMap[CURRENT_CHAIN_ID] as any;
+  return chainMap[CURRENT_CHAIN_ID];
 };

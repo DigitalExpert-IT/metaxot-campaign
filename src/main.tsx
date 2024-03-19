@@ -58,22 +58,22 @@ const queryClient = new QueryClient({
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-  <ThirdwebProvider
-    supportedChains={[targetChain]}
-    supportedWallets={[metamaskWallet(), trustWallet(), phantomWallet()]}
-    activeChain={targetChain}
-    clientId={CLIENT_ID}
-  >
-    <ChakraProvider theme={theme}>
-      <QueryClientProvider client={queryClient}>
-        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-        <Suspense fallback={<></>}>
-          <NiceModal.Provider>
-            <RouterProvider router={router} />
-          </NiceModal.Provider>
-        </Suspense>
-      </QueryClientProvider>
-    </ChakraProvider>
+    <ThirdwebProvider
+      supportedChains={[targetChain]}
+      supportedWallets={[metamaskWallet(), trustWallet(), phantomWallet()]}
+      activeChain={targetChain}
+      clientId={CLIENT_ID}
+    >
+      <ChakraProvider theme={theme}>
+        <QueryClientProvider client={queryClient}>
+          <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+          <Suspense fallback={<></>}>
+            <NiceModal.Provider>
+              <RouterProvider router={router} />
+            </NiceModal.Provider>
+          </Suspense>
+        </QueryClientProvider>
+      </ChakraProvider>
     </ThirdwebProvider>
   </React.StrictMode>
 );

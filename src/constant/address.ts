@@ -1,4 +1,7 @@
 export const BACKER_CONTRACT = {
   "0x29a": "0xCb630445C614dB41D50D8Ff05026Ad7674156844",
 };
-  
+
+export const USDT_CONTRACT = {
+  "0x29a": "0xf23C2Ee1F5349Aed29CA322c456EC4037aa1A7df"
+}

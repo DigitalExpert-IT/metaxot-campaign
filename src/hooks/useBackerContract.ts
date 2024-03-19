@@ -1,42 +1,83 @@
 import { useState, useEffect } from "react";
-import { useContract, useContractRead } from "@thirdweb-dev/react";
+import { useAddress, useContract, useContractRead, useContractWrite } from "@thirdweb-dev/react";
 import { BACKER_CONTRACT } from "@/constant/address";
 import Backer from "metaxot-contract/artifacts/contracts/Backer.sol/Backer.json";
 import { Backer as BackerType } from "metaxot-contract/typechain-types";
+import { useAsyncCall } from "./useAsyncCall";
+import { useBalanceQuery, useUsdtContract } from "./useUsdtContract";
 
 const CHAIN_ID = import.meta.env.VITE_PUBLIC_CHAIN_ID ?? "0x29a";
 const address = BACKER_CONTRACT[CHAIN_ID as "0x29a"];
 
-type TPackage = BackerType["listPackage"];
+export type TPackage = Awaited<ReturnType<BackerType["listPackage"]>>;
 
 export const useBacker = () => {
   return useContract(address, Backer.abi);
 };
 
 export const useBackerPackage = () => {
+  const address = useAddress();
   const backerContract = useBacker();
-  const { data: packageCounter, isLoading: loadingPackageCounter } = useContractRead(backerContract.contract, "_packageCounter");
+  const usdtContract = useUsdtContract();
+  const {data: myBalance} = useBalanceQuery();
+  const { data: packageCounter } = useContractRead(backerContract.contract, "_packageCounter");
+  const { mutateAsync: approveUsdt } = useContractWrite(usdtContract.contract, "approve");
+  const { mutateAsync: buy, isLoading: isBuyLoading, error: buyError } = useContractWrite(backerContract.contract, "buyPackage");
   const [listPackage, setListPackage] = useState<TPackage[] | null>(null);
 
+  /**
+   * @function buyPackage
+   * @param id: Number
+   * @returns claimId
+   * Id must be number
+   */
+  const { exec: buyPackage } = useAsyncCall(async (id: number) => {
+    const pkg = listPackage?.[id];
+    const price = pkg?.price;
+
+    if(!pkg) throw("Wrong Package Id");
+
+    if (myBalance?.value?.lt(price!)) {
+      throw {
+        code: "NotEnoughBalance",
+      };
+    }
+
+    const allowance = await usdtContract.contract?.call("allowance",  [
+      address,
+      backerContract.contract?.getAddress(),
+    ]);
+
+    // need approve or increase if allowance lower than price
+    if (allowance.gte(price?.mul(10 * 6))) {
+      await buy({ args: [id] });
+      const events = await backerContract.contract?.events.getEvents("returnedClaimId");
+      const claimId = events?.find((e) => e.data.buyer === address)?.data.claimId;
+      return claimId;
+    }
+
+    await approveUsdt({ args: [backerContract.contract?.getAddress(), price?.mul(10 * 6)] });
+    buyPackage(id);
+  });
+
+  // Get List Package
   useEffect(() => {
     const getPackages = async () => {
       const total = packageCounter;
 
       for (let i = 0; i < total; i++) {
         const backerPackage = await backerContract.contract?.call("listPackage", [i]);
-        setListPackage((prevState) => {
-          if (!prevState) return backerPackage
-          return [...prevState, backerPackage]
-        });
+        setListPackage((prevState) => { if (!prevState) return [{ ...backerPackage }]; return [...prevState, { ...backerPackage }] })
       }
     };
 
-    if (!loadingPackageCounter) {
+    if (!listPackage) {
       getPackages();
     }
-  }, [backerContract.contract, packageCounter, loadingPackageCounter]);
+  }, [backerContract.contract, packageCounter, listPackage]);
 
   return {
-    listPackage
+    listPackage,
+    buyPackage: { exec: buyPackage, isLoading: isBuyLoading, error: buyError }
   }
 }

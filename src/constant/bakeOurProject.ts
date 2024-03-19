@@ -9,20 +9,20 @@ export interface ICardWithImageTitle {
   onClick: () => void;
 }
 
-export const RewardList = [
-  {
+export const RewardList = {
+  "package-1": {
     title: "rewardCards.first.title",
     subtitle: "rewardCards.first.subtitle",
     imageUrl: firstRewardUrl,
-  },
-  {
+  }, 
+  "package-2": {
     title: "rewardCards.second.title",
     subtitle: "rewardCards.second.subtitle",
     imageUrl: secondRewardUrl,
   },
-  {
+ "package-3": {
     title: "rewardCards.third.title",
     subtitle: "rewardCards.third.subtitle",
     imageUrl: thirdRewardUrl,
   },
-];
+};
