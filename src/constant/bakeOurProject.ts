@@ -6,6 +6,7 @@ export interface ICardWithImageTitle {
   title: string;
   subtitle: string;
   imageUrl: string;
+  onClick: () => void;
 }
 
 export const RewardList = [

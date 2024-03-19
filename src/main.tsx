@@ -22,7 +22,7 @@ import {
 import { getActiveChain } from "./lib/chain";
 
 const targetChain = getActiveChain();  
-const CLIENT_ID = import.meta.env.NEXT_PUBLIC_THIRDWEB || "0";
+const CLIENT_ID = import.meta.env.VITE_PUBLIC_THIRDWEB;
 
 const router = createBrowserRouter([
   {

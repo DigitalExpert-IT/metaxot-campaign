@@ -2,7 +2,7 @@ import { ICardWithImageTitle } from "@/constant/bakeOurProject";
 import { Box, Text, Img } from "@chakra-ui/react";
 
 const CardWithImageTitle = (props: ICardWithImageTitle) => {
-  const { title, subtitle, imageUrl } = props;
+  const { title, subtitle, imageUrl, onClick } = props;
 
   return (
     <Box
@@ -14,6 +14,11 @@ const CardWithImageTitle = (props: ICardWithImageTitle) => {
       alignItems={"center"}
       gap={40}
       paddingX={10}
+      cursor={"pointer"}
+      _hover={{
+        backgroundColor: "#434343"
+      }}
+      onClick={onClick}
     >
       <Img
         src={imageUrl}

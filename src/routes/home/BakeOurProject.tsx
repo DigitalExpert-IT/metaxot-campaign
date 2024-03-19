@@ -8,11 +8,11 @@ import { useEffect } from "react";
 
 const BakeOurProject = () => {
   const { t } = useTranslation();
-  const backer = useBackerPackage();
+  const {listPackage} = useBackerPackage();
 
   useEffect(() => {
-    console.log("list packages: ", backer);
-  }, []);
+    console.log("list packages: ", listPackage);
+  }, [listPackage]);
 
   return (
     <Box
