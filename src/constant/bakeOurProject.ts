@@ -5,6 +5,7 @@ import thirdRewardUrl from "@/assets/images/30-dollar-reward.png";
 export interface ICardWithImageTitle {
   title: string;
   subtitle: string;
+  price: number;
   imageUrl: string;
   onClick: () => void;
 }

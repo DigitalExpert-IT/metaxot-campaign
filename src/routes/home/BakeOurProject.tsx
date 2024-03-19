@@ -45,6 +45,7 @@ const BakeOurProject = () => {
               key={rewardItem.title}
               title={t(rewardItem.title)}
               subtitle={t(rewardItem.subtitle)}
+              price={Number(pkg.price)}
               imageUrl={rewardItem.imageUrl}
               onClick={() => handleBuyPackage(pkg)}
             />
