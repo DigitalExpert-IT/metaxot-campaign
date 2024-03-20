@@ -8,6 +8,7 @@ import RiskAndCurrent from "./RiskAndCurrent";
 import Features from "./Features";
 import BakeOurProject from "./BakeOurProject";
 import Development from "./Development";
+import Faq from "./Faq";
 
 const Home = () => {
   return (
@@ -22,6 +23,7 @@ const Home = () => {
           <BakeOurProject />
           <Development />
           <RiskAndCurrent />
+          <Faq/>
         </Box>
       </Container>
     </Layout>

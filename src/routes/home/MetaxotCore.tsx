@@ -8,6 +8,7 @@ import metaverseThreeUrl from "@/assets/images/metaverse-3.png";
 import metaverseFourUrl from "@/assets/images/metaverse-4.png";
 import metaverseFiveUrl from "@/assets/images/metaverse-5.png";
 import metaverseSixUrl from "@/assets/images/metaverse-6.png";
+import { CoreList } from "@/constant/coreList";
 import metaversePlaceholderUrl from "@/assets/images/metaverse-placeholder.png";
 import SectionTitle from "@/components/SectionTitle";
 
@@ -61,8 +62,8 @@ const MetaxotCore: React.FC = () => {
           flexWrap={"wrap"}
           gap={2}
         >
-          {imageUrls.map((url, idx) => (
-            <Img key={`metaverse-image-${idx + 1}`} src={url} alt={`metaverse image ${idx + 1}`} />
+          {CoreList.map((item, idx) => (
+            <Img key={idx} src={item.image} alt={`metaverse image ${idx + 1}`} h={"390px"} w={"127px"} borderRadius={"lg"} opacity={0.5} _hover={{opacity: "100%"}}/>
           ))}
         </Box>
       </Box>
