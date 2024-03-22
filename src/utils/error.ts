@@ -22,7 +22,6 @@ export const getErrorMessage = (error: any) => {
   const errorTemp = `error.errorCode.${error.code}`;
   const errorCode = t(errorTemp);
   if (errorTemp === errorCode) {
-    debugger;
     if (error?.reason) return format(error.reason);
     if (error?.data?.message) return format(error.data.message);
     if (error?.message) return format(error.message);
