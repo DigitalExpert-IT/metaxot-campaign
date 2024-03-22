@@ -62,11 +62,11 @@ const useAuth = () => {
         localStorage.setItem("userData", JSON.stringify(user));
 
         navigate("/");
-        return { successMessage: t("login.success") };
       } catch (error: any) {
         throw new Error(error.message);
       }
-    }
+    },
+    t("login.success")
   );
 
   const { exec: register, isLoading: isLoadingRegister } = useAsyncCall(
@@ -84,7 +84,8 @@ const useAuth = () => {
       } catch (error: any) {
         throw new Error(error.message);
       }
-    }
+    },
+    t("register.success")
   );
 
   const userData = () => {

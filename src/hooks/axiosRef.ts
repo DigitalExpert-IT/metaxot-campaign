@@ -51,9 +51,19 @@ axiosRef.interceptors.response.use(
       window.location.replace("/login");
     }
 
+    if (
+      error.response &&
+      error.response.data?.result?.name === "FirebaseError"
+    ) {
+      return Promise.reject<IError>({
+        status: error.response.data?.result?.code,
+        message: error.response.data?.result?.code,
+      });
+    }
+
     if (error.response && error.response.data) {
       return Promise.reject<IError>({
-        status: error.response.data.status,
+        status: error.response.data.result?.title,
         message: error.response.data.result?.message,
       });
     }

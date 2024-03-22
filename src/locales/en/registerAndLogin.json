@@ -1,6 +1,7 @@
 {
   "register": {
     "title": "Register",
+    "success": "Register success",
     "accountExist": "Already have an account?",
     "clickHere": "Click here to login",
     "confirmRegistration": "Please confirm the registration by clicking",
