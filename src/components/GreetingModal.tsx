@@ -15,7 +15,7 @@ interface IGreetingModal extends UseDisclosureProps {
   claimId: string;
 }
 
-const GreetingModal = (props: IGreetingModal) => {
+const GreetingModal: React.FC<IGreetingModal> = (props) => {
   const { isOpen, onClose, claimId } = props;
   const { t } = useTranslation();
 
@@ -26,18 +26,17 @@ const GreetingModal = (props: IGreetingModal) => {
         bgGradient={"radial(#FFBFFC, #3391FF)"}
         borderTopLeftRadius={20}
         textShadow={"-2px 0px #360a51"}
-        >
+      >
         <ModalCloseButton />
         <ModalBody>
           <Text fontSize={"3xl"} mb={5}>{t("greetingModal.title")}</Text>
-          <Box background={"black"} p={4}
-        borderTopLeftRadius={20}>
-          <Text>
-            {t("greetingModal.body")}
-          </Text>
-          <Text fontSize={"3xl"} fontWeight={"bold"} textAlign={"center"}>
-            {claimId}
-          </Text>
+          <Box background={"black"} p={4} borderTopLeftRadius={20}>
+            <Text>
+              {t("greetingModal.body")}
+            </Text>
+            <Text fontSize={"3xl"} fontWeight={"bold"} textAlign={"center"}>
+              {claimId}
+            </Text>
           </Box>
         </ModalBody>
 

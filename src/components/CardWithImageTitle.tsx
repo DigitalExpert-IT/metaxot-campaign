@@ -30,7 +30,7 @@ const CardWithImageTitle = (props: ICardWithImageTitle) => {
       />
       <Box display={"flex"} flexDirection={"column"} textAlign={"center"}>
         <Text color={"white"} fontSize={"3xl"}>
-          {t(title, {price: price ?? 0})}
+          {t(title, {price: price.div(10 ** 6).toNumber() ?? 0})}
         </Text>
         <Text color={"#FFBFFC"} fontSize={"2xl"} maxW={400}>
           {subtitle}

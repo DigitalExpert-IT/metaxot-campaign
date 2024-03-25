@@ -5,20 +5,20 @@ import { RewardList } from "@/constant/bakeOurProject";
 import CardWithImageTitle from "@/components/CardWithImageTitle";
 import { TPackage, useBackerPackage } from "@/hooks/useBackerContract";
 import GreetingModal from "@/components/GreetingModal";
-import { useState } from "react";
+import { useEffect } from "react";
 
 const BakeOurProject = () => {
   const { t } = useTranslation();
-  const [claimId, setClaimId] = useState("");
-  const { listPackage, buyPackage } = useBackerPackage();
+  const { listPackage, buyPackage, claimId } = useBackerPackage();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleBuyPackage = async (pkg: TPackage) => {
-    const claimId = await buyPackage.exec(Number(pkg.id));
-    console.log("claim ID", claimId);
-    setClaimId(claimId);
-    onOpen();
+    await buyPackage.exec(Number(pkg.id));
   }
+
+  useEffect(() => {
+    if (claimId !== "") onOpen();
+  }, [claimId, onOpen]);
 
   return (
     <Box
@@ -48,9 +48,9 @@ const BakeOurProject = () => {
               return (
                 <CardWithImageTitle
                   key={rewardItem.title}
-                  title={t(rewardItem.title)}
+                  title={rewardItem.title}
                   subtitle={t(rewardItem.subtitle)}
-                  price={Number(pkg.price)}
+                  price={pkg.price}
                   imageUrl={rewardItem.imageUrl}
                   onClick={() => handleBuyPackage(pkg)}
                 />

@@ -19,6 +19,7 @@ export const useBackerPackage = () => {
   const address = useAddress();
   const backerContract = useBacker();
   const usdtContract = useUsdtContract();
+  const [claimId, setClaimId] = useState<string>("");
   const {data: myBalance} = useBalanceQuery();
   const { data: packageCounter } = useContractRead(backerContract.contract, "_packageCounter");
   const { mutateAsync: approveUsdt } = useContractWrite(usdtContract.contract, "approve");
@@ -43,21 +44,25 @@ export const useBackerPackage = () => {
       };
     }
 
+
     const allowance = await usdtContract.contract?.call("allowance",  [
       address,
       backerContract.contract?.getAddress(),
     ]);
-
     // need approve or increase if allowance lower than price
-    if (allowance.gte(price?.mul(10 * 6))) {
-      await buy({ args: [id] });
-      const events = await backerContract.contract?.events.getEvents("returnedClaimId");
-      const claimId = events?.find((e) => e.data.buyer === address)?.data.claimId;
-      return claimId;
+    if (!allowance.gte(price)) {
+      console.log("allowance", allowance.toNumber())
+      await approveUsdt({ args: [backerContract.contract?.getAddress(), price] });
     }
 
-    await approveUsdt({ args: [backerContract.contract?.getAddress(), price?.mul(10 * 6)] });
-    buyPackage(id);
+    console.log("doing buy!");
+    await buy({ args: [id] });
+    const events = await backerContract.contract?.events.getEvents("returnedClaimId");
+    console.log("events: ", events);
+    const claimId = events?.find((e) => e.data.buyer === address)?.data.claimId;
+    
+    console.log("claim Id", claimId);
+    setClaimId(claimId);
   });
 
   // Get List Package
@@ -78,6 +83,7 @@ export const useBackerPackage = () => {
 
   return {
     listPackage,
-    buyPackage: { exec: buyPackage, isLoading: isBuyLoading, error: buyError }
+    buyPackage: { exec: buyPackage, isLoading: isBuyLoading, error: buyError},
+    claimId
   }
 }

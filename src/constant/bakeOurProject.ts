@@ -1,11 +1,12 @@
 import firstRewardUrl from "@/assets/images/1-dollar-reward.png";
 import secondRewardUrl from "@/assets/images/10-dollar-reward.png";
 import thirdRewardUrl from "@/assets/images/30-dollar-reward.png";
+import { BigNumber } from "ethers";
 
 export interface ICardWithImageTitle {
   title: string;
   subtitle: string;
-  price: number;
+  price: BigNumber;
   imageUrl: string;
   onClick: () => void;
 }
