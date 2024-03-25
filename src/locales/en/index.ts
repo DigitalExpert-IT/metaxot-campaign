@@ -10,6 +10,8 @@ import bakeOurProject from "./bakeOurProject.json";
 import development from "./development.json";
 import registerAndLogin from "./registerAndLogin.json";
 import notFound from "./notFound.json";
+import greetingModal from "./greetingModal.json";
+import error from "./error.json";
 
 const en = {
   ...navigation,
@@ -24,6 +26,8 @@ const en = {
   ...development,
   ...registerAndLogin,
   ...notFound,
+  ...greetingModal,
+  ...error
 };
 
 export default en;

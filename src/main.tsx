@@ -12,6 +12,17 @@ import Login from "./routes/login/Login.tsx";
 import Register from "./routes/register/Register.tsx";
 import NotFound from "./routes/notFound/NotFound.tsx";
 
+import {
+  ThirdwebProvider,
+  metamaskWallet,
+  phantomWallet,
+  trustWallet,
+} from "@thirdweb-dev/react";
+import { getActiveChain } from "./lib/chain";
+
+const targetChain = getActiveChain();  
+const CLIENT_ID = import.meta.env.VITE_PUBLIC_THIRDWEB;
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -46,15 +57,22 @@ const queryClient = new QueryClient({
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <ChakraProvider theme={theme}>
-      <QueryClientProvider client={queryClient}>
-        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-        <Suspense fallback={<></>}>
-          <NiceModal.Provider>
-            <RouterProvider router={router} />
-          </NiceModal.Provider>
-        </Suspense>
-      </QueryClientProvider>
-    </ChakraProvider>
+    <ThirdwebProvider
+      supportedChains={[targetChain]}
+      supportedWallets={[metamaskWallet(), trustWallet(), phantomWallet()]}
+      activeChain={targetChain}
+      clientId={CLIENT_ID}
+    >
+      <ChakraProvider theme={theme}>
+        <QueryClientProvider client={queryClient}>
+          <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+          <Suspense fallback={<></>}>
+            <NiceModal.Provider>
+              <RouterProvider router={router} />
+            </NiceModal.Provider>
+          </Suspense>
+        </QueryClientProvider>
+      </ChakraProvider>
+    </ThirdwebProvider>
   </React.StrictMode>
 );

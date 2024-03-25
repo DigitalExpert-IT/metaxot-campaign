@@ -46,12 +46,7 @@ const Footer = () => {
           mt={{ base: 20, md: 0 }}
         >
           {FooterNav.map((link) => (
-            <Link
-              display={"block"}
-              href={link.link}
-              color={"#FFBFFC"}
-              key={link.name}
-            >
+            <Link key={link.name} display={"block"} href={link.link} color={"#FFBFFC"}>
               <Text fontSize={"24px"} color={"#FFBFFC"}>
                 {link.name}
               </Text>
