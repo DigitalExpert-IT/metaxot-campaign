@@ -2,28 +2,11 @@ import { Box, Img, Text } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import rightTitleShapeOneUrl from "@/assets/images/title-shape-right-1.png";
 import leftTitleShapeOneUrl from "@/assets/images/title-shape-left-1.png";
-import metaverseOneUrl from "@/assets/images/metaverse-1.png";
-import metaverseTwoUrl from "@/assets/images/metaverse-2.png";
-import metaverseThreeUrl from "@/assets/images/metaverse-3.png";
-import metaverseFourUrl from "@/assets/images/metaverse-4.png";
-import metaverseFiveUrl from "@/assets/images/metaverse-5.png";
-import metaverseSixUrl from "@/assets/images/metaverse-6.png";
 import { CoreList } from "@/constant/coreList";
-import metaversePlaceholderUrl from "@/assets/images/metaverse-placeholder.png";
 import SectionTitle from "@/components/SectionTitle";
 
 const MetaxotCore: React.FC = () => {
   const { t } = useTranslation();
-  const imageUrls: Array<string> = [
-    metaverseOneUrl,
-    metaverseTwoUrl,
-    metaverseThreeUrl,
-    metaverseFourUrl,
-    metaverseFiveUrl,
-    metaverseSixUrl,
-    metaversePlaceholderUrl,
-    metaversePlaceholderUrl,
-  ];
 
   return (
     <Box display={"flex"} flexDirection={"column"} gap={6}>

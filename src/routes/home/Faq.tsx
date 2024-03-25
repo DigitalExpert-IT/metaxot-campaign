@@ -1,10 +1,8 @@
 import SectionTitle from "@/components/SectionTitle";
 import { Box, Text } from "@chakra-ui/react";
-import { useTranslation } from "react-i18next";
 import { FAQ } from "@/constant/faqList";
 
 const Faq = () => {
-  const { t } = useTranslation();
   return (
     <Box id="FAQ">
       <SectionTitle title={"Faq"} />
