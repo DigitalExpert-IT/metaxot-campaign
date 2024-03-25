@@ -11,7 +11,6 @@ import Home from "./routes/home/Home.tsx";
 import Login from "./routes/login/Login.tsx";
 import Register from "./routes/register/Register.tsx";
 import NotFound from "./routes/notFound/NotFound.tsx";
-import ProtectedRoutes from "./routes/ProtectedRoutes.tsx";
 
 import {
   ThirdwebProvider,
