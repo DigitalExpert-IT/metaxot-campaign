@@ -1,12 +1,14 @@
-import { Box, Img, Text } from "@chakra-ui/react";
+import { Box, Flex, Img, Text } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import rightTitleShapeOneUrl from "@/assets/images/title-shape-right-1.png";
 import leftTitleShapeOneUrl from "@/assets/images/title-shape-left-1.png";
 import { CoreList } from "@/constant/coreList";
 import SectionTitle from "@/components/SectionTitle";
+import { useState } from "react";
 
 const MetaxotCore: React.FC = () => {
   const { t } = useTranslation();
+  const [activeCore, setActiveCore] = useState<number>(-1)
 
   return (
     <Box display={"flex"} flexDirection={"column"} gap={6}>
@@ -45,9 +47,22 @@ const MetaxotCore: React.FC = () => {
           flexWrap={"wrap"}
           gap={2}
         >
-          {CoreList.map((item, idx) => (
-            <Img key={idx} src={item.image} alt={`metaverse image ${idx + 1}`} h={"390px"} w={"127px"} borderRadius={"lg"} opacity={0.5} _hover={{opacity: "100%"}}/>
-          ))}
+          {activeCore >= 0 ? (
+            <Flex flexDir={{base: "column", lg: "row"}} onClick={() => setActiveCore(-1)} gap={10} alignItems={"center"}>
+              <Box>
+                <Img src={CoreList[activeCore].image} alt={`metaverse image ${activeCore + 1}`} minH={"390px"} minW={"127px"} borderRadius={"lg"} alignSelf={"center"}/>
+              </Box>
+              <Box>
+              <Text margin={"auto"} fontSize={{base: "md", lg: "2xl"}} fontWeight={"600"}>
+                {CoreList[activeCore].description}
+              </Text>
+              </Box>
+            </Flex>
+          ) : (
+            CoreList.map((item, idx) => (
+              <Img key={idx} src={item.image} alt={`metaverse image ${idx + 1}`} h={"390px"} w={"127px"} borderRadius={"lg"} opacity={0.5} _hover={{opacity: "100%"}} onClick={() => setActiveCore(idx)}/>
+            ))
+          )}
         </Box>
       </Box>
     </Box>
