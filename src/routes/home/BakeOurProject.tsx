@@ -2,7 +2,7 @@ import { Box, Img, Spinner, Text, useDisclosure } from "@chakra-ui/react";
 import bakeOurProjectUrl from "@/assets/images/bake-our-project.png";
 import { useTranslation } from "react-i18next";
 import { RewardList } from "@/constant/bakeOurProject";
-import CardWithImageTitle from "@/components/CardWithImageTitle";
+import CardWithBackgroundImage from "@/components/CardWithBackgroundImage";
 import { TPackage, useBackerPackage } from "@/hooks/useBackerContract";
 import GreetingModal from "@/components/GreetingModal";
 import { useEffect } from "react";
@@ -38,22 +38,23 @@ const BakeOurProject = () => {
         (
           <Box
             display={"flex"}
-            flexDirection={"column"}
+            flexDirection={"row"}
             justifyContent={"center"}
-            gap={100}
+            flexWrap={"wrap"}
+            gap={20}
           >
             {listPackage.map((pkg) => {
               const rewardItem = RewardList[pkg.uuid as "package-1"];
 
               return (
-                <CardWithImageTitle
+                <CardWithBackgroundImage
                   key={rewardItem.title}
                   title={rewardItem.title}
                   subtitle={t(rewardItem.subtitle)}
                   price={pkg.price}
-                  imageUrl={rewardItem.imageUrl}
-                  onClick={() => handleBuyPackage(pkg)}
-                />
+                  imageUrl={"https://ik.imagekit.io/msxxxaegj/metashot/backerBanner.png?updatedAt=1713419174848"}
+                  description=""
+                  onClick={() => handleBuyPackage(pkg)} />
               )
             })}
           </Box>

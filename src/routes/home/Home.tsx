@@ -9,6 +9,8 @@ import Features from "./Features";
 import BakeOurProject from "./BakeOurProject";
 import Development from "./Development";
 import Faq from "./Faq";
+import Download from "./Download";
+import Community from "./Community";
 
 const Home = () => {
   return (
@@ -17,13 +19,15 @@ const Home = () => {
         <Box display={"flex"} flexDirection={"column"} gap={24}>
           <Header />
           <Roadmap />
+          <BakeOurProject />
           <TheGame />
           <MetaxotCore />
           <Features />
-          <BakeOurProject />
+          <Download />
           <Development />
           <RiskAndCurrent />
           <Faq/>
+          <Community/>
         </Box>
       </Container>
     </Layout>

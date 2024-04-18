@@ -8,6 +8,7 @@ export interface ICardWithImageTitle {
   subtitle: string;
   price: BigNumber;
   imageUrl: string;
+  description?: string;
   onClick: () => void;
 }
 
