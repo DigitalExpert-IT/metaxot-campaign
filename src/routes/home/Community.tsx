@@ -1,16 +1,17 @@
 import SectionTitle from "@/components/SectionTitle";
 import { Box, Img, Link, Text } from "@chakra-ui/react";
-import { useTranslation } from "react-i18next";
 import { media } from "@/constant/media";
+import useFetchContents from "@/hooks/useFetchContents";
 
 const Community = () => {
-  const { t } = useTranslation();
+  const {data, loading} = useFetchContents("communities")
+
   return (
+    !loading && data.map((item, idx) => (
     <Box>
-      <SectionTitle title={t("community.title")} />
-      <Text fontSize={"2xl"} fontWeight={"500"} mt={14} textAlign={"center"}>
-        {t("community.description")}
-      </Text>
+        <SectionTitle title={item.attributes.Header} key={idx}/><Text key={idx} fontSize={"2xl"} fontWeight={"500"} mt={14} textAlign={"center"}>
+          {item.attributes.Caption}
+        </Text>
       <Box
         display={"flex"}
         flexDirection={{ base: "column", md: "row" }}
@@ -26,6 +27,7 @@ const Community = () => {
         ))}
       </Box>
     </Box>
+    ))
   );
 };
 

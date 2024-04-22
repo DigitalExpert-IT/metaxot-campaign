@@ -1,6 +1,8 @@
 export interface IFaq {
     question: string;
     answer: string;
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    attributes?: any;
   }
   
   export const FAQ: Array<IFaq> = [

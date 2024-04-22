@@ -1,41 +1,79 @@
-import { Box, BoxProps, Circle, Img, Text } from "@chakra-ui/react";
-import Hexagonal from "@/components/Hexagonal";
+import { Box, Circle, Img, Text } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import leftTitleShapeUrl from "@/assets/images/title-shape-left.png";
 import rightTitleShapeUrl from "@/assets/images/title-shape-right.png";
+import useFetchContents from "@/hooks/useFetchContents";
+import hexagon from "../../assets/images/hexagon.png";
 
 const Roadmap: React.FC = () => {
   const { t } = useTranslation();
+  const {data, loading} = useFetchContents("stretch-goals")
 
-  const getHexagonalStyle = (filled: boolean = true): BoxProps => ({
-    backgroundImage: `${
-      filled
-        ? "linear-gradient(to right, #3391FF 5%, #FFBFFC 50%, #3391FF)"
-        : "linear-gradient(to right, #000, #000)"
-    }`,
-    bgClip: "text",
-    textColor: "transparent",
-    filter: `
-        drop-shadow(2px 0px 0px white)
-        drop-shadow(-2px 0px 0px white)
-        drop-shadow(0px 2px 0px white)
-        drop-shadow(0px -2px 0px white)
-        drop-shadow(2px 0px 0px white)
-        drop-shadow(-2px 0px 0px white)
-      `,
-  });
+  // const getHexagonalStyle = (filled: boolean = true): BoxProps => ({
+  //   backgroundImage: `${
+  //     filled
+  //       ? "linear-gradient(to right, #3391FF 5%, #FFBFFC 50%, #3391FF)"
+  //       : "linear-gradient(to right, #000, #000)"
+  //   }`,
+  //   bgClip: "text",
+  //   textColor: "transparent",
+  //   filter: `
+  //       drop-shadow(2px 0px 0px white)
+  //       drop-shadow(-2px 0px 0px white)
+  //       drop-shadow(0px 2px 0px white)
+  //       drop-shadow(0px -2px 0px white)
+  //       drop-shadow(2px 0px 0px white)
+  //       drop-shadow(-2px 0px 0px white)
+  //     `,
+  // });
 
-  const getHexagonalContentStyle = (
-    top: number = 0,
-    left: number = 0
-  ): BoxProps => ({
-    top: `calc(${top}px - 110px)`,
-    left: `calc(${left}px + 30px)`,
-    position: "absolute",
-    zIndex: "1",
-    fontSize: "24px",
-    margin: "0 auto",
-  });
+  // const getHexagonalContentStyle = (
+  //   top: number = 0,
+  //   left: number = 0
+  // ): BoxProps => ({
+  //   top: `calc(${top}px - 110px)`,
+  //   left: `calc(${left}px + 30px)`,
+  //   position: "absolute",
+  //   zIndex: "1",
+  //   fontSize: "24px",
+  //   margin: "0 auto",
+  // });
+
+  const Hexagon = ({color, goal}: {color: string, goal: string}) => {
+    return (
+      <Box
+        w={`100px`}
+        h={`100px`}
+        position="relative"
+      >
+        <Box backgroundImage={hexagon} backgroundSize="cover"
+        backgroundPosition="center"
+        w="100%"
+        h="120%"
+        position="absolute"
+        top="0"
+        left="0"
+        zIndex="0"/>
+        <Box
+          w="95%"
+          h="110%"
+          mt={"2.5"}
+          position="absolute"
+          alignItems={"center"}
+          top="50%"
+          left="50%"
+          transform="translate(-50%, -50%)"
+          clipPath="polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)"
+          //background={"linear-gradient(to right, #3391FF 5%, #FFBFFC 50%, #3391FF)"}
+          background={color}
+          display={"flex"}
+          justifyContent={"center"}
+        >
+          <Text color={"white"} fontWeight={"bold"} fontSize={"1.5rem"}>{goal}</Text>
+        </Box>
+      </Box>
+    );
+  };
 
   return (
     <Box display={"flex"} flexDirection={"column"} gap={4}>
@@ -72,110 +110,35 @@ const Roadmap: React.FC = () => {
         justifyContent={{ base: "center", lg: "start" }}
         position={"relative"}
         w={"100%"}
-        top={{ base: -150, lg: 0 }}
+        top={{ base: -300, lg: 0 }}
         minH={{ base: "1400px", lg: "700px" }}
       >
         <Box
           display={"flex"}
           flexDirection={"column"}
           w={"max-content"}
-          justifyContent={"center"}
           position={"absolute"}
           h={"max-content"}
+          ml={{lg: "10rem", base: 0}}
+          gap={8}
         >
-          <Box>
-            <Hexagonal marginBottom={"-20px"} {...getHexagonalStyle()} />
-            <Box as="span" {...getHexagonalContentStyle(220)}>
-              {t("goalOne.value")}
+          {!loading && data.slice(0,5).map((item, idx) => (
+          <Box key={idx} ml={idx % 2 !== 0 ? "5rem" : 0} display={"flex"} flexDir={"row"} alignItems={"center"}>
+            <Box>
+            <Hexagon goal={item.attributes.GoalAmount} color={"black"}/>
             </Box>
+            <Box>
             <Text
-              position={"absolute"}
-              top={110}
-              left={"220px"}
               fontSize={"2xl"}
               minW={{ lg: "300px" }}
+              textAlign={"left"}
+              ml={"2rem"}
             >
-              {t("goalOne.description")}
+              {item.attributes.Title}
             </Text>
-          </Box>
-          <Box>
-            <Hexagonal
-              marginBottom={"-20px"}
-              {...getHexagonalStyle()}
-              top={-100}
-              left={"60px"}
-            />
-            <Box as="span" {...getHexagonalContentStyle(340, 60)}>
-              {t("goalTwo.value")}
             </Box>
-            <Text
-              position={"absolute"}
-              top={230}
-              left={"220px"}
-              fontSize={"2xl"}
-              minW={{ lg: "300px" }}
-            >
-              {t("goalTwo.description")}
-            </Text>
           </Box>
-          <Box>
-            <Hexagonal
-              marginBottom={"-20px"}
-              {...getHexagonalStyle()}
-              top={-200}
-            />
-            <Box as="span" {...getHexagonalContentStyle(460)}>
-              {t("goalThree.value")}
-            </Box>
-            <Text
-              position={"absolute"}
-              top={350}
-              left={"220px"}
-              fontSize={"2xl"}
-              minW={{ lg: "300px" }}
-            >
-              {t("goalThree.description")}
-            </Text>
-          </Box>
-          <Box>
-            <Hexagonal
-              marginBottom={"-20px"}
-              {...getHexagonalStyle()}
-              top={-300}
-              left={"60px"}
-            />
-            <Box as="span" {...getHexagonalContentStyle(580, 60)}>
-              {t("goalFour.value")}
-            </Box>
-            <Text
-              position={"absolute"}
-              top={470}
-              left={"220px"}
-              fontSize={"2xl"}
-              minW={{ lg: "300px" }}
-            >
-              {t("goalFour.description")}
-            </Text>
-          </Box>
-          <Box>
-            <Hexagonal
-              marginBottom={"-20px"}
-              {...getHexagonalStyle()}
-              top={-400}
-            />
-            <Box as="span" {...getHexagonalContentStyle(700)}>
-              {t("goalFive.value")}
-            </Box>
-            <Text
-              position={"absolute"}
-              top={590}
-              left={"220px"}
-              fontSize={"2xl"}
-              minW={{ lg: "300px" }}
-            >
-              {t("goalFive.description")}
-            </Text>
-          </Box>
+          ))}
         </Box>
         <Box
           borderRight={"1px dashed grey"}
@@ -191,101 +154,26 @@ const Roadmap: React.FC = () => {
           w={"max-content"}
           position={"absolute"}
           left={{ lg: "60%" }}
-          top={{ base: "55%", lg: 0 }}
+          top={{ base: "75%", lg: 0 }}
+          gap={8}
         >
-          <Box>
-            <Hexagonal marginBottom={"-20px"} {...getHexagonalStyle()} />
-            <Box as="span" {...getHexagonalContentStyle(220)}>
-              {t("goalSix.value")}
+          {!loading && data.slice(5,10).map((item, idx) => (
+          <Box key={idx} ml={idx % 2 !== 0 ? "5rem" : 0} display={"flex"} flexDir={"row"} alignItems={"center"}>
+            <Box>
+            <Hexagon goal={item.attributes.GoalAmount} color={"black"}/>
             </Box>
+            <Box>
             <Text
-              position={"absolute"}
-              top={110}
-              left={"220px"}
               fontSize={"2xl"}
               minW={{ lg: "300px" }}
+              textAlign={"left"}
+              ml={"2rem"}
             >
-              {t("goalSix.description")}
+              {item.attributes.Title}
             </Text>
-          </Box>
-          <Box>
-            <Hexagonal
-              marginBottom={"-20px"}
-              {...getHexagonalStyle(false)}
-              top={-100}
-              left={"60px"}
-            />
-            <Box as="span" {...getHexagonalContentStyle(340, 60)}>
-              {t("goalSeven.value")}
             </Box>
-            <Text
-              position={"absolute"}
-              top={230}
-              left={"220px"}
-              fontSize={"2xl"}
-              minW={{ lg: "300px" }}
-            >
-              {t("goalSeven.description")}
-            </Text>
           </Box>
-          <Box>
-            <Hexagonal
-              marginBottom={"-20px"}
-              {...getHexagonalStyle(false)}
-              top={-200}
-            />
-            <Box as="span" {...getHexagonalContentStyle(460)}>
-              {t("goalEight.value")}
-            </Box>
-            <Text
-              position={"absolute"}
-              top={350}
-              left={"220px"}
-              fontSize={"2xl"}
-              minW={{ lg: "300px" }}
-            >
-              {t("goalEight.description")}
-            </Text>
-          </Box>
-          <Box>
-            <Hexagonal
-              marginBottom={"-20px"}
-              {...getHexagonalStyle(false)}
-              top={-300}
-              left={"60px"}
-            />
-            <Box as="span" {...getHexagonalContentStyle(580, 60)}>
-              {t("goalNine.value")}
-            </Box>
-            <Text
-              position={"absolute"}
-              top={470}
-              left={"220px"}
-              fontSize={"2xl"}
-              minW={{ lg: "300px" }}
-            >
-              {t("goalNine.description")}
-            </Text>
-          </Box>
-          <Box>
-            <Hexagonal
-              marginBottom={"-20px"}
-              {...getHexagonalStyle(false)}
-              top={-400}
-            />
-            <Box as="span" {...getHexagonalContentStyle(700)}>
-              {t("goalTen.value")}
-            </Box>
-            <Text
-              position={"absolute"}
-              top={590}
-              left={"220px"}
-              fontSize={"2xl"}
-              minW={{ lg: "300px" }}
-            >
-              {t("goalTen.description")}
-            </Text>
-          </Box>
+          ))}
         </Box>
       </Box>
       <Box display={"flex"} alignItems={"center"} flexDirection={"column"}>
