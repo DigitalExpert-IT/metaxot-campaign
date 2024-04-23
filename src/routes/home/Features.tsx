@@ -6,6 +6,7 @@ import { FeatureList, IFeatureList } from "@/constant/featureList";
 const Features: React.FC = () => {
   const { t } = useTranslation();
 
+
   const transformFeature = (feature: IFeatureList) => {
     const mapSubContent = feature?.texts.subContent?.map((sub) => (
       <Trans i18nKey={sub} key={sub} components={{ b: <b /> }} />

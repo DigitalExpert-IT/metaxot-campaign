@@ -2,16 +2,17 @@ import SectionTitle from "@/components/SectionTitle";
 import { Box, Img, Text } from "@chakra-ui/react";
 import vrIconUrl from "@/assets/images/vr-icon.png";
 import nintendoIconUrl from "@/assets/images/nintendo-icon.png";
-import { useTranslation } from "react-i18next";
+import useFetchContents from "@/hooks/useFetchContents";
 
 const Development = () => {
-  const { t } = useTranslation();
+  const {data, loading} = useFetchContents("developments")
   return (
     <Box>
-      <SectionTitle title={t("development.title")} />
-      <Text fontSize={"xl"} mt={14} textAlign={"justify"}>
-        {t("development.description")}
-      </Text>
+      {!loading && data.map((item) => (
+      <><SectionTitle title={item.attributes.Header} /><Text fontSize={"xl"} mt={14} textAlign={"justify"}>
+          {item.attributes.Caption}
+        </Text></>
+      ))}
       <Box
         display={"flex"}
         flexDirection={{ base: "column", md: "row" }}
