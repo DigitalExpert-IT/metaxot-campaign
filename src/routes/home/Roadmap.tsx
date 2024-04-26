@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import leftTitleShapeUrl from "@/assets/images/title-shape-left.png";
 import rightTitleShapeUrl from "@/assets/images/title-shape-right.png";
 import useFetchContents from "@/hooks/useFetchContents";
-import hexagon from "../../assets/images/hexagon.png";
+import hexagon from "../../assets/images/hexagon.svg"
 
 const Roadmap: React.FC = () => {
   const { t } = useTranslation();
@@ -48,7 +48,7 @@ const Roadmap: React.FC = () => {
       >
         <Box backgroundImage={hexagon} backgroundSize="cover"
         backgroundPosition="center"
-        w="100%"
+        w="107%"
         h="120%"
         position="absolute"
         top="0"

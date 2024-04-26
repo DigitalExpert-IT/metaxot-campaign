@@ -11,6 +11,7 @@ const MetaxotCore: React.FC = () => {
   const { t } = useTranslation();
   const [activeCore, setActiveCore] = useState<number>(-1)
   const {data, loading} = useFetchContents("sub-metaxot-cores")
+  const {data: titleCore, loading: titleLoading} = useFetchContents("title-metaxot-cores")
 
   return (
     <Box display={"flex"} flexDirection={"column"} gap={6}>
@@ -30,7 +31,7 @@ const MetaxotCore: React.FC = () => {
           maxH={"30px"}
         />
         <Text fontSize={"3xl"} color={"white"}>
-          {t("metaxotCore.content.subtitle")}
+          {!titleLoading && titleCore[0].attributes.Headline}
         </Text>
         <Img
           src={rightTitleShapeOneUrl}
@@ -40,7 +41,7 @@ const MetaxotCore: React.FC = () => {
       </Box>
       <Box display={"flex"} flexDirection={"column"} justifyContent={"center"}>
         <Text textAlign={"justify"} marginBottom={12}>
-          {t("metaxotCore.content.paragraph")}
+          {!titleLoading && titleCore[0].attributes.Caption}
         </Text>
         <Box
           display={"flex"}
