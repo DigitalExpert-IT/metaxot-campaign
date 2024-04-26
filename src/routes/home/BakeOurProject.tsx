@@ -1,4 +1,4 @@
-import { Box, Img, Spinner, Text, Toast, useDisclosure, useToast } from "@chakra-ui/react";
+import { Box, Img, Spinner, Text, useDisclosure, useToast } from "@chakra-ui/react";
 import bakeOurProjectUrl from "@/assets/images/bake-our-project.png";
 import { useTranslation } from "react-i18next";
 import { RewardList } from "@/constant/bakeOurProject";
