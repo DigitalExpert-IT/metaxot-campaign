@@ -21,6 +21,7 @@
     "@emotion/styled": "^11.11.0",
     "@fontsource/unlock": "^5.0.18",
     "@fontsource/urbanist": "^5.0.18",
+    "@hookform/resolvers": "^3.3.4",
     "@tanstack/react-query": "^5.25.0",
     "@thirdweb-dev/chains": "^0.1.57",
     "@thirdweb-dev/react": "^4.1.1",
@@ -34,7 +35,8 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.51.0",
     "react-i18next": "^14.0.5",
-    "react-router-dom": "^6.22.0"
+    "react-router-dom": "^6.22.0",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.6",
@@ -50,5 +52,6 @@
     "typescript": "^5.2.2",
     "vite": "^5.1.0",
     "vite-tsconfig-paths": "^4.3.1"
-  }
+  },
+  "packageManager": "pnpm@9.0.6+sha512.f6d863130973207cb7a336d6b439a242a26ac8068077df530d6a86069419853dc1ffe64029ec594a9c505a3a410d19643c870aba6776330f5cfddcf10a9c1617"
 }

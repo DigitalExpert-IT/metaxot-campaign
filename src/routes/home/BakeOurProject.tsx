@@ -18,16 +18,7 @@ const BakeOurProject = () => {
 
   const handleBuyPackage = async (pkg: TPackage) => {
     if(address !== undefined) {
-        const loadingToast = toast({
-          title:  "Loading",
-          description: "Processing...",
-          status: "info" ,
-          duration:  null, // Null duration to keep the loading toast open
-          isClosable: false,
-        })
-        loadingToast
-
-        await buyPackage.exec(Number(pkg.id)).then(() => toast.close(loadingToast))
+        await buyPackage.exec(Number(pkg.id))
     } else {
       toast({
         title: 'Buy Package Denied',
