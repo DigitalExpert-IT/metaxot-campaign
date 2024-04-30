@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import {
   Box,
   Container,
@@ -8,6 +8,8 @@ import {
   FormLabel,
   Button,
   Image,
+  InputGroup,
+  InputRightElement,
 } from "@chakra-ui/react";
 import { FramerBox } from "@/components/animation";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -15,10 +17,12 @@ import useAuth, { ILoginForm } from "@/hooks/useAuth";
 import metaxotLogoUrl from "@/assets/images/metaxot-logo-white.png";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 
 const Login = () => {
   const buttonSubmitRef = useRef<HTMLButtonElement>(null);
   const { login, isLoadingLogin } = useAuth();
+  const [ show, setShow ] = useState(false)
   const { register, handleSubmit } = useForm<ILoginForm>();
   const onSubmit: SubmitHandler<ILoginForm> = (data) => {
     login(data);
@@ -117,12 +121,17 @@ const Login = () => {
                 </FormControl>
                 <FormControl mt={4}>
                   <FormLabel>Password</FormLabel>
-                  <Input
-                    type="password"
-                    placeholder="Password"
-                    boxShadow={"inset 0 0 10px #55009a"}
-                    {...register("password")}
-                  />
+                  <InputGroup>
+                    <Input
+                      type={show ? "text" : "password"}
+                      placeholder="Password"
+                      boxShadow={"inset 0 0 10px #55009a"}
+                      {...register("password")}
+                    />
+                    <InputRightElement onClick={() => setShow(!show)}>
+                      {show ? <ViewIcon/> : <ViewOffIcon/>}
+                    </InputRightElement>
+                  </InputGroup>
                 </FormControl>
                 <Button
                   width={"full"}

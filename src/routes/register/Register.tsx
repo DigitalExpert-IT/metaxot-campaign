@@ -8,6 +8,9 @@ import {
   FormLabel,
   Button,
   Image,
+  InputGroup,
+  InputRightElement,
+  Tooltip,
 } from "@chakra-ui/react";
 import { FramerBox } from "@/components/animation";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -15,11 +18,35 @@ import useAuth, { IRegisterForm } from "@/hooks/useAuth";
 import metaxotLogoUrl from "@/assets/images/metaxot-logo-white.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from "yup";
+
 
 const Register = () => {
   const buttonSubmitRef = useRef<HTMLButtonElement>(null);
   const { register: _register, isLoadingRegister } = useAuth();
-  const { register, handleSubmit } = useForm<IRegisterForm>();
+  const [ show, setShow ] = useState(false)
+  const [ showPassword, setShowPassword ] = useState(false)
+
+  const formSchema = Yup.object().shape({
+    password: Yup.string()
+      .required("Password is required")
+      .min(4, "Password length should be at least 4 characters")
+      .max(12, "Password cannot exceed more than 12 characters"),
+    passwordConfirmation: Yup.string()
+      .required("Confirm Password is required")
+      .min(4, "Password length should be at least 4 characters")
+      .max(12, "Password cannot exceed more than 12 characters")
+      .oneOf([Yup.ref("password")], "Passwords do not match")
+  });
+
+  
+  const { register, handleSubmit, formState: {errors}} = useForm<IRegisterForm>({
+    mode: "all",
+    // @ts-expect-error no problem in operation, although type error appears.
+    resolver: yupResolver(formSchema)
+  });
   const onSubmit: SubmitHandler<IRegisterForm> = async (data) => {
     const response = await _register(data);
 
@@ -29,6 +56,8 @@ const Register = () => {
   const { t } = useTranslation();
   const [confirmationLink, setConfirmationLink] = useState("");
   const navigate = useNavigate();
+
+  console.log("validation data", errors.password?.message, errors.passwordConfirmation?.message)
 
   return (
     <Box
@@ -138,21 +167,39 @@ const Register = () => {
                   </FormControl>
                   <FormControl mt={4}>
                     <FormLabel>Password</FormLabel>
-                    <Input
-                      type="password"
-                      placeholder="Password"
-                      boxShadow={"inset 0 0 10px #55009a"}
-                      {...register("password")}
-                    />
+                    <Tooltip label={errors.password?.message}>
+                    <InputGroup>
+                      <Input
+                        type={show ? "text" : "password"}
+                        placeholder="Password"
+                        // @ts-expect-error no problem in operation, although type error appears.
+                        name="password"
+                        boxShadow={"inset 0 0 10px #55009a"}
+                        {...register("password")}
+                      />
+                    <InputRightElement onClick={() => setShow(!show)}>
+                        {show ? <ViewIcon/> : <ViewOffIcon/>}
+                      </InputRightElement>
+                    </InputGroup>
+                    </Tooltip>
                   </FormControl>
                   <FormControl mt={4}>
                     <FormLabel>Password Confirmation</FormLabel>
-                    <Input
-                      type="password"
-                      placeholder="Password Confirmation"
-                      boxShadow={"inset 0 0 10px #55009a"}
-                      {...register("passwordConfirmation")}
-                    />
+                    <Tooltip label={errors.passwordConfirmation?.message}>
+                      <InputGroup>
+                        <Input
+                          type={showPassword ? "text" : "password"}
+                          placeholder="Password Confirmation"
+                          // @ts-expect-error no problem in operation, although type error appears.
+                          name="passwordConfirmation"
+                          boxShadow={"inset 0 0 10px #55009a"}
+                          {...register("passwordConfirmation")}
+                        />
+                          <InputRightElement onClick={() => setShowPassword(!showPassword)}>
+                            {showPassword ? <ViewIcon/> : <ViewOffIcon/>}
+                          </InputRightElement>
+                      </InputGroup>
+                    </Tooltip>
                   </FormControl>
                   <Button
                     width={"full"}
