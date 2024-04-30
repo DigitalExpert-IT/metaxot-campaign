@@ -46,7 +46,8 @@ const Roadmap: React.FC = () => {
         h={`100px`}
         position="relative"
       >
-        <Box backgroundImage={hexagon} backgroundSize="cover"
+        <Img src={hexagon} backgroundSize="cover"
+        alt=""
         backgroundPosition="center"
         w="107%"
         h="120%"
