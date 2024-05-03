@@ -8,7 +8,9 @@ import hexagon from "../../assets/images/hexagon.svg"
 const Roadmap: React.FC = () => {
   const { t } = useTranslation();
   const {data, loading} = useFetchContents("stretch-goals")
-
+  const {data: currentBacker, loading: currentLoading} = useFetchContents("headlines")
+  const current = parseInt(!currentLoading && currentBacker[0].attributes.PledgeCount)
+ 
   // const getHexagonalStyle = (filled: boolean = true): BoxProps => ({
   //   backgroundImage: `${
   //     filled
@@ -39,6 +41,8 @@ const Roadmap: React.FC = () => {
   //   margin: "0 auto",
   // });
 
+  
+
   const Hexagon = ({color, goal}: {color: string, goal: string}) => {
     return (
       <Box
@@ -65,12 +69,11 @@ const Roadmap: React.FC = () => {
           left="50%"
           transform="translate(-50%, -50%)"
           clipPath="polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)"
-          //background={"linear-gradient(to right, #3391FF 5%, #FFBFFC 50%, #3391FF)"}
-          background={color}
+          background={current >= parseInt(goal) ? "linear-gradient(to right, #3391FF 5%, #FFBFFC 50%, #3391FF)" : color}
           display={"flex"}
           justifyContent={"center"}
         >
-          <Text color={"white"} fontWeight={"bold"} fontSize={"1.5rem"}>{goal}</Text>
+          <Text color={"white"} fontWeight={"bold"} fontSize={"1.5rem"}>${goal}K</Text>
         </Box>
       </Box>
     );

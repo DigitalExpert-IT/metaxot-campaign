@@ -50,7 +50,7 @@ const Header: React.FC = () => {
           >
               <Box>
                 <Text fontSize={"3xl"} fontWeight={"normal"}>
-                  {item.attributes.PledgeCount}
+                  {"$ "+item.attributes.PledgeCount}
                 </Text>
                 <Text
                   fontSize={"xl"}
