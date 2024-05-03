@@ -1,9 +1,8 @@
 import { ICardWithImageTitle } from "@/constant/bakeOurProject";
 import { Box, Text } from "@chakra-ui/react";
-import { t } from "i18next";
 
 const CardWithBackgroundImage = (props: ICardWithImageTitle) => {
-  const { title, subtitle, price, imageUrl, description, onClick } = props;
+  const { title, price, imageUrl, description, onClick } = props;
 
   return (
     <Box
@@ -28,12 +27,12 @@ const CardWithBackgroundImage = (props: ICardWithImageTitle) => {
     >
       <Box display={"flex"} flexDirection={"column"} textAlign={"center"} p={5} gap={5}>
         <Text color={"white"} fontSize={"3xl"}>
-          {t(title, {price: price.div(10 ** 6).toNumber() ?? 0})}
+          {"$"+price.div(10 ** 6).toNumber() ?? 0}
         </Text>
         <Text color={"white"} fontSize={"2xl"} maxW={200} alignSelf={"center"}>
-          {subtitle}
+          {title}
         </Text>
-        <Text color={"white"} fontSize={"2xl"} maxW={200}>
+        <Text color={"white"} fontSize={"lg"} maxW={200}>
           {description}
         </Text>
       </Box>

@@ -1,12 +1,12 @@
 import { Box, Img, Spinner, Text, useDisclosure, useToast } from "@chakra-ui/react";
 import bakeOurProjectUrl from "@/assets/images/bake-our-project.png";
 import { useTranslation } from "react-i18next";
-import { RewardList } from "@/constant/bakeOurProject";
 import CardWithBackgroundImage from "@/components/CardWithBackgroundImage";
 import { TPackage, useBackerPackage } from "@/hooks/useBackerContract";
 import GreetingModal from "@/components/GreetingModal";
 import { useEffect } from "react";
 import { useAddress } from "@thirdweb-dev/react";
+import useFetchContents from "@/hooks/useFetchContents";
 
 const BakeOurProject = () => {
   const { t } = useTranslation();
@@ -14,8 +14,7 @@ const BakeOurProject = () => {
   const toast = useToast();
   const { listPackage, buyPackage, claimId } = useBackerPackage();
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  console.log("list", listPackage)
+  const {data, loading} = useFetchContents("perklists");
 
 
   const handleBuyPackage = async (pkg: TPackage) => {
@@ -60,17 +59,17 @@ const BakeOurProject = () => {
             gap={20}
           >
             {listPackage.map((pkg, idx) => {
-              const rewardItem = RewardList[pkg.uuid as "package-1"];
+              // const rewardItem = RewardList[pkg.uuid as "package-1"];
+              //handle the package content from strapi for stagging test
 
               return (
                 <CardWithBackgroundImage
                   key={idx}
-                  title={rewardItem.title}
-                  subtitle={t(rewardItem.subtitle)}
+                  title={!loading && data[idx].attributes.title}
+                  description={!loading && data[idx].attributes.description}
                   price={pkg.price}
                   imageUrl={"https://ik.imagekit.io/msxxxaegj/metashot/backerBanner.png?updatedAt=1713419174848"}
-                  description=""
-                  onClick={() => handleBuyPackage(pkg)} />
+                  onClick={() => handleBuyPackage(pkg)} subtitle={""} />
               )
             })}
           </Box>
