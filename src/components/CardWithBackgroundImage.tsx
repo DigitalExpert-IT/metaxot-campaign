@@ -22,6 +22,8 @@ const CardWithBackgroundImage = (props: ICardWithImageTitle) => {
         backgroundColor: "#434343"
       }}
       backgroundImage={imageUrl}
+      backgroundSize={"cover"}
+      backgroundRepeat={"no-repeat"}
       onClick={onClick}
     >
       <Box display={"flex"} flexDirection={"column"} textAlign={"center"} p={5} gap={5}>

@@ -15,6 +15,8 @@ const BakeOurProject = () => {
   const { listPackage, buyPackage, claimId } = useBackerPackage();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  console.log("list", listPackage)
+
 
   const handleBuyPackage = async (pkg: TPackage) => {
     if(address !== undefined) {
@@ -57,12 +59,12 @@ const BakeOurProject = () => {
             flexWrap={"wrap"}
             gap={20}
           >
-            {listPackage.map((pkg) => {
+            {listPackage.map((pkg, idx) => {
               const rewardItem = RewardList[pkg.uuid as "package-1"];
 
               return (
                 <CardWithBackgroundImage
-                  key={rewardItem.title}
+                  key={idx}
                   title={rewardItem.title}
                   subtitle={t(rewardItem.subtitle)}
                   price={pkg.price}

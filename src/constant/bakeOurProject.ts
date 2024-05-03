@@ -28,4 +28,34 @@ export const RewardList = {
     subtitle: "rewardCards.third.subtitle",
     imageUrl: thirdRewardUrl,
   },
+  "package-4": {
+    title: "rewardCards.first.title",
+    subtitle: "rewardCards.first.subtitle",
+    imageUrl: firstRewardUrl,
+  }, 
+  "package-5": {
+    title: "rewardCards.second.title",
+    subtitle: "rewardCards.second.subtitle",
+    imageUrl: secondRewardUrl,
+  },
+ "package-6": {
+    title: "rewardCards.third.title",
+    subtitle: "rewardCards.third.subtitle",
+    imageUrl: thirdRewardUrl,
+  },
+  "package-7": {
+    title: "rewardCards.first.title",
+    subtitle: "rewardCards.first.subtitle",
+    imageUrl: firstRewardUrl,
+  }, 
+  "package-8": {
+    title: "rewardCards.second.title",
+    subtitle: "rewardCards.second.subtitle",
+    imageUrl: secondRewardUrl,
+  },
+ "package-9": {
+    title: "rewardCards.third.title",
+    subtitle: "rewardCards.third.subtitle",
+    imageUrl: thirdRewardUrl,
+  },
 };
