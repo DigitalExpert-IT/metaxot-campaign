@@ -72,7 +72,7 @@ export const useBackerPackage = () => {
     // setClaimId(claimId);
     axiosRef.post("/buy_package", {
       "packageId" : Number(pkg.id),
-      "verificationBuyCode" : Number(pkg.id),
+      "verificationBuyCode" : `${Number(pkg.id)}`,
       headers: {
         "Authorization": `Basic ${token}`
       }
@@ -80,13 +80,13 @@ export const useBackerPackage = () => {
     }).then(() => {
       toast({
         title: 'Success',
-          description: "Buy Package Success",
+          description: "Buy Package Succes",
           status: 'success',
           duration: 3000,
           isClosable: true,
       })
-    }).catch(function (error) {
-      console.log(error);
+    }).catch((error) => {
+      console.log("error", error);
     });
   });
 
