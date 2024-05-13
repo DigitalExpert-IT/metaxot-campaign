@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import { useBackerPackage } from "./useBackerContract";
 
 export interface ILoginForm {
   email: string;
@@ -27,6 +28,7 @@ interface IUserData {
 const useAuth = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const { resetListPackage } = useBackerPackage();
   const toast = useToast();
   const [token, setToken] = useState<string | null>(
     Cookies.get("token") || null
@@ -61,6 +63,7 @@ const useAuth = () => {
         Cookies.set("token", authorizationToken);
         localStorage.setItem("userData", JSON.stringify(user));
 
+        resetListPackage();
         navigate("/");
       } catch (error: any) {
         throw new Error(error.message);
