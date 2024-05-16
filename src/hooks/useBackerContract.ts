@@ -82,7 +82,7 @@ export const useBackerPackage = () => {
         title: 'Success',
           description: "Buy Package Succes",
           status: 'success',
-          duration: 3000,
+          duration: 5000,
           isClosable: true,
       })
     }).catch((error) => {
