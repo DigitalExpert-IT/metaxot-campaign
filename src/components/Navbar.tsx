@@ -4,6 +4,8 @@ import {
   Button,
   Center,
   Container,
+  HStack,
+  IconButton,
   Image,
   Link,
   Stack,
@@ -15,6 +17,7 @@ import MenuDrawer from "./MenuDrawer";
 import { useTranslation } from "react-i18next";
 import useAuth from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { TbUserFilled } from "react-icons/tb";
 
 interface INavbar {
   data: INavigation[];
@@ -90,12 +93,17 @@ const Navbar: React.FC<INavbar> = ({ data }) => {
               display={{ base: "none", lg: "flex" }}
             >
               <WalletButton />
+              <HStack>
               <Button
                 type="submit"
                 onClick={isAuthenticated ? logout : () => navigate("/login")}
               >
                 {t(isAuthenticated ? "logout.title" : "login.title")}
               </Button>
+              {isAuthenticated && 
+                <IconButton icon={<TbUserFilled color="white"/>} onClick={() => navigate("/profile")} aria-label={"Profile"}/>
+              }
+              </HStack>
             </Stack>
             <MenuDrawer>
               <MenuList data={data} />
@@ -108,6 +116,9 @@ const Navbar: React.FC<INavbar> = ({ data }) => {
               >
                 {isAuthenticated ? t("logout.title") : t("login.title")}
               </Button>
+              {isAuthenticated &&
+                <IconButton icon={<TbUserFilled color="white"/>} aria-label={"Profile"}/>
+              }
             </MenuDrawer>
           </Box>
         </Container>

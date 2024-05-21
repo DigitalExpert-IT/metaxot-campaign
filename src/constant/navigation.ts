@@ -27,18 +27,18 @@ export const Navigation: Array<INavigation> = [
 export const FooterNav: Array<INavigation> = [
   {
     name: "FAQ",
-    link: "#",
+    link: "#FAQ",
   },
   {
     name: "Community",
-    link: "#",
+    link: "#Community",
   },
   {
     name: "Backer",
-    link: "#",
+    link: "#Backer",
   },
   {
     name: "Download",
-    link: "#",
+    link: "#Download",
   },
 ]

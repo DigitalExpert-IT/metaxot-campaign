@@ -19,6 +19,7 @@ import {
   trustWallet,
 } from "@thirdweb-dev/react";
 import { getActiveChain } from "./lib/chain";
+import Profile from "./routes/profile/Profile.tsx";
 
 const targetChain = getActiveChain();  
 const CLIENT_ID = import.meta.env.VITE_PUBLIC_THIRDWEB;
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register />,
+  },
+  {
+    path: "profile",
+    element: <Profile/>
   },
   {
     path: "*",
