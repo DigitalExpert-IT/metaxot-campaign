@@ -111,7 +111,7 @@ export const useBackerPackage = () => {
     if (packageCounter !== undefined) {
       getPackages();
     }
-  }, [backerContract.contract, packageCounter, listPackage]);
+  }, [backerContract.contract, packageCounter]);
 
   return {
     listPackage,
