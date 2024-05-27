@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
-import { useAddress, useContract, useContractRead, useContractWrite } from "@thirdweb-dev/react";
+import {
+  useAddress,
+  useContract,
+  useContractRead,
+  useContractWrite,
+} from "@thirdweb-dev/react";
 import { BACKER_CONTRACT } from "@/constant/address";
 import Backer from "metaxot-contract/artifacts/contracts/Backer.sol/Backer.json";
 import { Backer as BackerType } from "metaxot-contract/typechain-types";
@@ -21,16 +26,32 @@ export const useBacker = () => {
 export const useBackerPackage = () => {
   const address = useAddress();
   const toast = useToast();
-  const token = Cookies.get("token")
+  const token = Cookies.get("token");
   const backerContract = useBacker();
   const usdtContract = useUsdtContract();
   // commented temporary for stagging build
   // const [claimId, setClaimId] = useState<string>("");
-  const {data: myBalance} = useBalanceQuery();
-  const { data: packageCounter } = useContractRead(backerContract.contract, "_packageCounter");
-  const { mutateAsync: approveUsdt } = useContractWrite(usdtContract.contract, "approve");
-  const { mutateAsync: buy, isLoading: isBuyLoading, error: buyError } = useContractWrite(backerContract.contract, "buyPackage");
+  const { data: myBalance } = useBalanceQuery();
+  const { data: packageCounter } = useContractRead(
+    backerContract.contract,
+    "_packageCounter"
+  );
+  const { mutateAsync: approveUsdt } = useContractWrite(
+    usdtContract.contract,
+    "approve"
+  );
+  const {
+    mutateAsync: buy,
+    isLoading: isBuyLoading,
+    error: buyError,
+  } = useContractWrite(backerContract.contract, "buyPackage");
   const [listPackage, setListPackage] = useState<TPackage[] | null>(null);
+  const { data: ownedPackage } = useContractRead(
+    backerContract.contract,
+    "ownedListPackage",
+    [address]
+  );
+  const userPackage = ownedPackage?.package?.nftList;
 
   /**
    * @function buyPackage
@@ -42,7 +63,7 @@ export const useBackerPackage = () => {
     const pkg = listPackage?.[id];
     const price = pkg?.price;
 
-    if(!pkg) throw("Wrong Package Id");
+    if (!pkg) throw "Wrong Package Id";
 
     if (myBalance?.value?.lt(price!)) {
       throw {
@@ -50,15 +71,16 @@ export const useBackerPackage = () => {
       };
     }
 
-
-    const allowance = await usdtContract.contract?.call("allowance",  [
+    const allowance = await usdtContract.contract?.call("allowance", [
       address,
       backerContract.contract?.getAddress(),
     ]);
     // need approve or increase if allowance lower than price
     if (!allowance.gte(price)) {
-      console.log("allowance", allowance.toNumber())
-      await approveUsdt({ args: [backerContract.contract?.getAddress(), price] });
+      console.log("allowance", allowance.toNumber());
+      await approveUsdt({
+        args: [backerContract.contract?.getAddress(), price],
+      });
     }
 
     console.log("doing buy!");
@@ -67,47 +89,53 @@ export const useBackerPackage = () => {
     // const events = await backerContract.contract?.events.getEvents("returnedClaimId");
     // console.log("events: ", events);
     // const claimId = events?.find((e) => e.data.buyer === address)?.data.claimId;
-    
+
     // console.log("claim Id", claimId);
     // setClaimId(claimId);
-    axiosRef.post("/buy_package", {
-      "packageId" : Number(pkg.id),
-      "verificationBuyCode" : `${Number(pkg.id)}`,
-      headers: {
-        "Authorization": `Basic ${token}`
-      }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    }).then(() => {
-      toast({
-        title: 'Success',
+    axiosRef
+      .post("/buy_package", {
+        packageId: Number(pkg.id),
+        verificationBuyCode: `${Number(pkg.id)}`,
+        headers: {
+          Authorization: `Basic ${token}`,
+        },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      })
+      .then(() => {
+        toast({
+          title: "Success",
           description: "Buy Package Succes",
-          status: 'success',
+          status: "success",
           duration: 5000,
           isClosable: true,
+        });
       })
-    }).catch((error) => {
-      console.log("error", error);
-    });
+      .catch((error) => {
+        console.log("error", error);
+      });
   });
 
   const resetListPackage = () => {
-    setListPackage(null)
-  }
+    setListPackage(null);
+  };
 
   // Get List Package
   useEffect(() => {
     const getPackages = async () => {
       const total = packageCounter;
       const newPackages = [];
-  
+
       for (let i = 0; i < total; i++) {
-        const backerPackage = await backerContract.contract?.call("listPackage", [i]);
+        const backerPackage = await backerContract.contract?.call(
+          "listPackage",
+          [i]
+        );
         newPackages.push({ ...backerPackage });
       }
-  
+
       setListPackage(newPackages);
     };
-  
+
     if (packageCounter !== undefined) {
       getPackages();
     }
@@ -115,8 +143,9 @@ export const useBackerPackage = () => {
 
   return {
     listPackage,
-    buyPackage: { exec: buyPackage,  isLoading: isBuyLoading, error: buyError},
+    buyPackage: { exec: buyPackage, isLoading: isBuyLoading, error: buyError },
     // claimId,
-    resetListPackage
-  }
-}
+    resetListPackage,
+    userPackage,
+  };
+};
