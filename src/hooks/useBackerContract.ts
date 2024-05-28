@@ -46,12 +46,36 @@ export const useBackerPackage = () => {
     error: buyError,
   } = useContractWrite(backerContract.contract, "buyPackage");
   const [listPackage, setListPackage] = useState<TPackage[] | null>(null);
-  const { data: ownedPackage } = useContractRead(
-    backerContract.contract,
-    "ownedListPackage",
-    [address]
-  );
-  const userPackage = ownedPackage?.package?.nftList;
+  const {data: ownedPackageAmount} = useContractRead(backerContract.contract, "_ownedListPackageAmount", [address]);
+
+  const [isLoadingPackages, setIsLoadingPackages] = useState(false)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [userPackages, setUserPackages] = useState<any[]>([])
+
+  useEffect(() => {
+
+    const getUserPackages = async () => {
+      // eslint-disable-next-line no-extra-boolean-cast
+      if(!!ownedPackageAmount) return;
+
+      setIsLoadingPackages(true)
+
+      const packages = Array(ownedPackageAmount).map((_,idx) => {
+        backerContract.contract?.call("ownedListPackage", [address, idx])
+      })
+      const res = await Promise.all(packages)
+      setUserPackages(res)
+
+      setIsLoadingPackages(false)
+    }
+
+    getUserPackages()
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[address, backerContract.contract, Number(ownedPackageAmount)])
+
+
+
 
   /**
    * @function buyPackage
@@ -146,6 +170,7 @@ export const useBackerPackage = () => {
     buyPackage: { exec: buyPackage, isLoading: isBuyLoading, error: buyError },
     // claimId,
     resetListPackage,
-    userPackage,
+    userPackages,
+    isLoadingPackages
   };
 };

@@ -14,7 +14,7 @@ import { useBackerPackage } from "@/hooks/useBackerContract";
 
 const Profile = () => {
   const { userData } = useAuth();
-  const { userPackage = [] } = useBackerPackage();
+  const { userPackages = [], isLoadingPackages } = useBackerPackage();
 
   return (
     <Layout>
@@ -47,8 +47,10 @@ const Profile = () => {
             gap={20}
           >
             {/* FIXME: Need to add image url and description to the ownedListPackage func */}
-            {userPackage.length ? (
-              userPackage.map((item: string, idx: string | number) => (
+            {isLoadingPackages ? (
+              <Spinner />
+            ) : (
+              userPackages.map((item: string, idx: string | number) => (
                 <Stack key={idx}>
                   <Image
                     src={
@@ -59,8 +61,6 @@ const Profile = () => {
                   <Text color={"white"}>March, 23rd 2024</Text>
                 </Stack>
               ))
-            ) : (
-              <Spinner />
             )}
           </Box>
         </Box>
