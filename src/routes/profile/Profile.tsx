@@ -14,7 +14,7 @@ import { useBackerPackage } from "@/hooks/useBackerContract";
 
 const Profile = () => {
   const { userData } = useAuth();
-  const { userPackages = [], isLoadingPackages } = useBackerPackage();
+  const {userPackage, isLoadingPackages } = useBackerPackage();
 
   return (
     <Layout>
@@ -50,7 +50,7 @@ const Profile = () => {
             {isLoadingPackages ? (
               <Spinner />
             ) : (
-              userPackages.map((item: string, idx: string | number) => (
+              userPackage.map((item: string, idx: string | number) => (
                 <Stack key={idx}>
                   <Image
                     src={

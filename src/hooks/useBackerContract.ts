@@ -29,8 +29,6 @@ export const useBackerPackage = () => {
   const token = Cookies.get("token");
   const backerContract = useBacker();
   const usdtContract = useUsdtContract();
-  // commented temporary for stagging build
-  // const [claimId, setClaimId] = useState<string>("");
   const { data: myBalance } = useBalanceQuery();
   const { data: packageCounter } = useContractRead(
     backerContract.contract,
@@ -51,6 +49,8 @@ export const useBackerPackage = () => {
   const [isLoadingPackages, setIsLoadingPackages] = useState(false)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [userPackages, setUserPackages] = useState<any[]>([])
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [userPackage, setUserPackage] = useState<any[]>([])
 
   useEffect(() => {
 
@@ -99,7 +99,7 @@ export const useBackerPackage = () => {
       address,
       backerContract.contract?.getAddress(),
     ]);
-    // need approve or increase if allowance lower than price
+
     if (!allowance.gte(price)) {
       console.log("allowance", allowance.toNumber());
       await approveUsdt({
@@ -109,13 +109,7 @@ export const useBackerPackage = () => {
 
     console.log("doing buy!");
     await buy({ args: [id] });
-    // got error because wont get event on testnet
-    // const events = await backerContract.contract?.events.getEvents("returnedClaimId");
-    // console.log("events: ", events);
-    // const claimId = events?.find((e) => e.data.buyer === address)?.data.claimId;
 
-    // console.log("claim Id", claimId);
-    // setClaimId(claimId);
     axiosRef
       .post("/buy_package", {
         packageId: Number(pkg.id),
@@ -123,12 +117,11 @@ export const useBackerPackage = () => {
         headers: {
           Authorization: `Basic ${token}`,
         },
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       })
       .then(() => {
         toast({
           title: "Success",
-          description: "Buy Package Succes",
+          description: "Buy Package Success",
           status: "success",
           duration: 5000,
           isClosable: true,
@@ -143,7 +136,6 @@ export const useBackerPackage = () => {
     setListPackage(null);
   };
 
-  // Get List Package
   useEffect(() => {
     const getPackages = async () => {
       const total = packageCounter;
@@ -165,12 +157,32 @@ export const useBackerPackage = () => {
     }
   }, [backerContract.contract, packageCounter]);
 
+  useEffect(() => {
+    const getOwnedPackage = async () => {
+      const totalOwned = Number(ownedPackageAmount);
+      const ownedPackages = [];
+
+      for (let i = 0; i < totalOwned; i++) {
+        const ownPackage = await backerContract.contract?.call(
+          "ownedListPackage",
+          [address, i]
+        );
+        ownedPackages.push(ownPackage?.package?.nftList);
+      }
+      setUserPackage(ownedPackages);
+    };
+
+    if (ownedPackageAmount !== undefined) {
+      getOwnedPackage();
+    }
+  }, [backerContract.contract, ownedPackageAmount, address]);
+
   return {
     listPackage,
     buyPackage: { exec: buyPackage, isLoading: isBuyLoading, error: buyError },
-    // claimId,
     resetListPackage,
     userPackages,
-    isLoadingPackages
+    isLoadingPackages,
+    userPackage
   };
 };
