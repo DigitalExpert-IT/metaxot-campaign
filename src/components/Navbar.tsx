@@ -80,6 +80,7 @@ const Navbar: React.FC<INavbar> = ({ data }) => {
               <Image
                 mx={{ base: 4, lg: 0 }}
                 src={metaxotLogoUrl}
+                cursor={"pointer"}
                 alt={"Metaxot Logo"}
                 w={{ base: 24, lg: "auto" }}
                 onClick={() => navigate("/")}
