@@ -11,6 +11,8 @@ import {
 import Layout from "@/components/Layout";
 import useAuth from "@/hooks/useAuth";
 import { useBackerPackage } from "@/hooks/useBackerContract";
+import dummyItem from "@/assets/images/dummyItem.png"
+import backgroundProfile from "@/assets/images/profileBanner.png"
 
 const Profile = () => {
   const { userData } = useAuth();
@@ -22,7 +24,7 @@ const Profile = () => {
         <Box display={"flex"} flexDirection={"column"} gap={24}>
           <Image
             src={
-              "https://ik.imagekit.io/msxxxaegj/alitaLaunchAir/profileBanner.png?updatedAt=1716175327549"
+              backgroundProfile
             }
             alt={"Hero Image"}
             pos={"relative"}
@@ -54,7 +56,7 @@ const Profile = () => {
                 <Stack key={idx}>
                   <Image
                     src={
-                      "https://ik.imagekit.io/msxxxaegj/alitaLaunchAir/pakcageExample.png?updatedAt=1716179490589"
+                      dummyItem
                     }
                   />
                   <Text color={"white"}>{item}</Text>
