@@ -69,8 +69,8 @@ importers:
         specifier: ^3.0.5
         version: 3.0.5
       metaxot-contract:
-        specifier: ^1.7.1
-        version: 1.7.1(@ethersproject/bignumber@5.7.0)
+        specifier: ^1.9.2
+        version: 1.9.2(@ethersproject/bignumber@5.7.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2426,6 +2426,7 @@ packages:
   are-we-there-yet@3.0.1:
     resolution: {integrity: sha512-QZW4EDmGwlYur0Yyf/b2uGucHQMa8aFUP7eu9ddR73vvhFyt4V0Vl3QHPcTNJ8l6qYOBdxgXdnBXQrHilfRQBg==}
     engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
+    deprecated: This package is no longer supported.
 
   argparse@2.0.1:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
@@ -3314,6 +3315,7 @@ packages:
   gauge@4.0.4:
     resolution: {integrity: sha512-f9m+BEN5jkg6a0fZjleidjN51VE1X+mPFQ2DJ0uv1V39oCLCbsGe6yjbBnp7eK7z/+GAon99a3nHuqbuuthyPg==}
     engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
+    deprecated: This package is no longer supported.
 
   gaxios@5.1.3:
     resolution: {integrity: sha512-95hVgBRgEIRQQQHIbnxBXeHbW4TqFk4ZDJW7wmVtvYar72FdhRIo1UGOLS2eRAKCPEdPBWu+M7+A33D9CdX9rA==}
@@ -3886,8 +3888,8 @@ packages:
     resolution: {integrity: sha512-LJKTl4iVNTndhL+3Uz/tfkjD0klIWsHlUzgtuNnNrsf7bAlXR30m+xYB7lHr5Z/l6e/yAIsr26Dabx6Buo4VGQ==}
     engines: {node: '>= 7.6.0'}
 
-  metaxot-contract@1.7.1:
-    resolution: {integrity: sha512-kAJGvU9buhJOtGtQjlEJnvWHD3iXjAuIrAXFS4ZNns3j7fpXa1G3vFZp2zmKVfdEZQ/m8q9CxwDQtNYEMGpwGA==}
+  metaxot-contract@1.9.2:
+    resolution: {integrity: sha512-+6eJYTeZhJ5xfpusGWIHiCkbPq+8hyaUGTTUKshZdNkU4fEPloVkjMTLrb+e+etXC2J/1uRKHnbkI92Kkj8O6w==}
 
   micro-ftch@0.3.1:
     resolution: {integrity: sha512-/0LLxhzP0tfiR5hcQebtudP56gUurs2CLkGarnCiB/OqEyUFQ6U3paQi/tgLv0hBJYt2rnr9MNpxz4fiiugstg==}
@@ -4089,6 +4091,7 @@ packages:
   npmlog@6.0.2:
     resolution: {integrity: sha512-/vBvz5Jfr9dT/aFWd0FIRf+T/Q2WBsLENygUaFUqstqsycmZAP/t5BvFJTK0viFmSUxiUKTUplWy5vt+rvKIxg==}
     engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
+    deprecated: This package is no longer supported.
 
   number-to-bn@1.7.0:
     resolution: {integrity: sha512-wsJ9gfSz1/s4ZsJN01lyonwuxA1tml6X1yBDnfpMglypcBRFZZkus26EdPSlqS5GJfYddVZa22p3VNb3z5m5Ig==}
@@ -10587,7 +10590,7 @@ snapshots:
       treeify: 1.1.0
       web3-utils: 1.10.4
 
-  metaxot-contract@1.7.1(@ethersproject/bignumber@5.7.0):
+  metaxot-contract@1.9.2(@ethersproject/bignumber@5.7.0):
     dependencies:
       '@openzeppelin/contracts': 4.9.6
       '@openzeppelin/contracts-upgradeable': 4.9.6

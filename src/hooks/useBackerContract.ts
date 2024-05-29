@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
-import { useAddress, useContract, useContractRead, useContractWrite } from "@thirdweb-dev/react";
+import {
+  useAddress,
+  useContract,
+  useContractRead,
+  useContractWrite,
+} from "@thirdweb-dev/react";
 import { BACKER_CONTRACT } from "@/constant/address";
 import Backer from "metaxot-contract/artifacts/contracts/Backer.sol/Backer.json";
 import { Backer as BackerType } from "metaxot-contract/typechain-types";
@@ -21,16 +26,56 @@ export const useBacker = () => {
 export const useBackerPackage = () => {
   const address = useAddress();
   const toast = useToast();
-  const token = Cookies.get("token")
+  const token = Cookies.get("token");
   const backerContract = useBacker();
   const usdtContract = useUsdtContract();
-  // commented temporary for stagging build
-  // const [claimId, setClaimId] = useState<string>("");
-  const {data: myBalance} = useBalanceQuery();
-  const { data: packageCounter } = useContractRead(backerContract.contract, "_packageCounter");
-  const { mutateAsync: approveUsdt } = useContractWrite(usdtContract.contract, "approve");
-  const { mutateAsync: buy, isLoading: isBuyLoading, error: buyError } = useContractWrite(backerContract.contract, "buyPackage");
+  const { data: myBalance } = useBalanceQuery();
+  const { data: packageCounter } = useContractRead(
+    backerContract.contract,
+    "_packageCounter"
+  );
+  const { mutateAsync: approveUsdt } = useContractWrite(
+    usdtContract.contract,
+    "approve"
+  );
+  const {
+    mutateAsync: buy,
+    isLoading: isBuyLoading,
+    error: buyError,
+  } = useContractWrite(backerContract.contract, "buyPackage");
   const [listPackage, setListPackage] = useState<TPackage[] | null>(null);
+  const {data: ownedPackageAmount} = useContractRead(backerContract.contract, "_ownedListPackageAmount", [address]);
+
+  const [isLoadingPackages, setIsLoadingPackages] = useState(false)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [userPackages, setUserPackages] = useState<any[]>([])
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [userPackage, setUserPackage] = useState<any[]>([])
+
+  useEffect(() => {
+
+    const getUserPackages = async () => {
+      // eslint-disable-next-line no-extra-boolean-cast
+      if(!!ownedPackageAmount) return;
+
+      setIsLoadingPackages(true)
+
+      const packages = Array(ownedPackageAmount).map((_,idx) => {
+        backerContract.contract?.call("ownedListPackage", [address, idx])
+      })
+      const res = await Promise.all(packages)
+      setUserPackages(res)
+
+      setIsLoadingPackages(false)
+    }
+
+    getUserPackages()
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[address, backerContract.contract, Number(ownedPackageAmount)])
+
+
+
 
   /**
    * @function buyPackage
@@ -42,7 +87,7 @@ export const useBackerPackage = () => {
     const pkg = listPackage?.[id];
     const price = pkg?.price;
 
-    if(!pkg) throw("Wrong Package Id");
+    if (!pkg) throw "Wrong Package Id";
 
     if (myBalance?.value?.lt(price!)) {
       throw {
@@ -50,73 +95,94 @@ export const useBackerPackage = () => {
       };
     }
 
-
-    const allowance = await usdtContract.contract?.call("allowance",  [
+    const allowance = await usdtContract.contract?.call("allowance", [
       address,
       backerContract.contract?.getAddress(),
     ]);
-    // need approve or increase if allowance lower than price
+
     if (!allowance.gte(price)) {
-      console.log("allowance", allowance.toNumber())
-      await approveUsdt({ args: [backerContract.contract?.getAddress(), price] });
+      console.log("allowance", allowance.toNumber());
+      await approveUsdt({
+        args: [backerContract.contract?.getAddress(), price],
+      });
     }
 
     console.log("doing buy!");
     await buy({ args: [id] });
-    // got error because wont get event on testnet
-    // const events = await backerContract.contract?.events.getEvents("returnedClaimId");
-    // console.log("events: ", events);
-    // const claimId = events?.find((e) => e.data.buyer === address)?.data.claimId;
-    
-    // console.log("claim Id", claimId);
-    // setClaimId(claimId);
-    axiosRef.post("/buy_package", {
-      "packageId" : Number(pkg.id),
-      "verificationBuyCode" : `${Number(pkg.id)}`,
-      headers: {
-        "Authorization": `Basic ${token}`
-      }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    }).then(() => {
-      toast({
-        title: 'Success',
-          description: "Buy Package Succes",
-          status: 'success',
+
+    axiosRef
+      .post("/buy_package", {
+        packageId: Number(pkg.id),
+        verificationBuyCode: `${Number(pkg.id)}`,
+        headers: {
+          Authorization: `Basic ${token}`,
+        },
+      })
+      .then(() => {
+        toast({
+          title: "Success",
+          description: "Buy Package Success",
+          status: "success",
           duration: 5000,
           isClosable: true,
+        });
       })
-    }).catch((error) => {
-      console.log("error", error);
-    });
+      .catch((error) => {
+        console.log("error", error);
+      });
   });
 
   const resetListPackage = () => {
-    setListPackage(null)
-  }
+    setListPackage(null);
+  };
 
-  // Get List Package
   useEffect(() => {
     const getPackages = async () => {
       const total = packageCounter;
       const newPackages = [];
-  
+
       for (let i = 0; i < total; i++) {
-        const backerPackage = await backerContract.contract?.call("listPackage", [i]);
+        const backerPackage = await backerContract.contract?.call(
+          "listPackage",
+          [i]
+        );
         newPackages.push({ ...backerPackage });
       }
-  
+
       setListPackage(newPackages);
     };
-  
+
     if (packageCounter !== undefined) {
       getPackages();
     }
-  }, [backerContract.contract, packageCounter, listPackage]);
+  }, [backerContract.contract, packageCounter]);
+
+  useEffect(() => {
+    const getOwnedPackage = async () => {
+      const totalOwned = Number(ownedPackageAmount);
+      const ownedPackages = [];
+
+      for (let i = 0; i < totalOwned; i++) {
+        const ownPackage = await backerContract.contract?.call(
+          "ownedListPackage",
+          [address, i]
+        );
+        ownedPackages.push(ownPackage?.package?.nftList);
+      }
+      setUserPackage(ownedPackages);
+    };
+
+    if (ownedPackageAmount !== undefined) {
+      getOwnedPackage();
+    }
+  }, [backerContract.contract, ownedPackageAmount, address]);
 
   return {
     listPackage,
-    buyPackage: { exec: buyPackage,  isLoading: isBuyLoading, error: buyError},
-    // claimId,
-    resetListPackage
-  }
-}
+    buyPackage: { exec: buyPackage, isLoading: isBuyLoading, error: buyError },
+    resetListPackage,
+    userPackages,
+    isLoadingPackages,
+    userPackage
+  };
+};

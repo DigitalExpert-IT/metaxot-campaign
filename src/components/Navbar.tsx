@@ -82,6 +82,7 @@ const Navbar: React.FC<INavbar> = ({ data }) => {
                 src={metaxotLogoUrl}
                 alt={"Metaxot Logo"}
                 w={{ base: 24, lg: "auto" }}
+                onClick={() => navigate("/")}
               />
             </Box>
             <Stack
